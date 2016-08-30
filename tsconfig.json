@@ -1,0 +1,53 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "isolatedModules": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "declaration": false,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "noLib": false,
+    "inlineSourceMap": true,
+    "preserveConstEnums": true,
+    "suppressImplicitAnyIndexErrors": true
+  },
+  "filesGlob": [
+    "**/*.ts",
+    "**/*.tsx",
+    "!node_modules/**",
+    "!bower_components/**"
+  ],
+  "exclude": [
+    "typings/main",
+    "typings/main.d.ts"
+  ],
+  "compileOnSave": true,
+  "buildOnSave": false,
+  "files": [
+    "ngApp/js/app.ts",
+    "ngApp/js/controllers.ts",
+    "ngApp/js/services.ts",
+    "server.ts",
+    "typings/globals/angular-resource/index.d.ts",
+    "typings/globals/angular-ui-bootstrap/index.d.ts",
+    "typings/globals/angular-ui-router/index.d.ts",
+    "typings/globals/angular/index.d.ts",
+    "typings/globals/body-parser/index.d.ts",
+    "typings/globals/cookie-parser/index.d.ts",
+    "typings/globals/express-serve-static-core/index.d.ts",
+    "typings/globals/express/index.d.ts",
+    "typings/globals/jquery/index.d.ts",
+    "typings/globals/mime/index.d.ts",
+    "typings/globals/morgan/index.d.ts",
+    "typings/globals/node/index.d.ts",
+    "typings/globals/serve-favicon/index.d.ts",
+    "typings/globals/serve-static/index.d.ts",
+    "typings/index.d.ts"
+  ],
+  "atom": {
+    "rewriteTsconfig": false
+  }
+}
