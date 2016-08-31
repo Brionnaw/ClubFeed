@@ -2,11 +2,37 @@ body {
   background: #ccc;
 }
 .check-in {
-  background-color:transparent;
-  height: 100px;
-
+  background-color:#fff;
+  height: 80px;
+  margin: 5px;
   border: #000 solid 1px;
 }
 .home-bio {
   border: #000 solid 1px;
+  margin: 0px;
+}
+
+.nav-feed {
+  background-color:#fff;
+  height: 50px;
+  margin: 5px;
+  border: #000 solid 1px;
+}
+.live-feed {
+  background-color: #fff;
+  height: 800px;
+  margin: 5px;
+  padding-top: 20px;
+  border: #000 solid 1px;
+}
+.notifications
+{
+  background-color: #fff;
+  height: 800px;
+  margin: 5px 5px 5px 5px;
+  padding: 5px;
+  border: #000 solid 2px;
+}
+.center {
+ text-align: center;
 }
