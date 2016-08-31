@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html ng-app="app">
-
 <head>
   <title>coder-camps-js</title>
   <meta charset="utf-8">
@@ -9,7 +8,7 @@
   <link rel = "ngApp/css/theme.css"/>
   <link rel="stylesheet" href="/css/site.css"/>
 </head>
-
+<!-- NAVIGATION BAR -->
 <body>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -50,7 +49,7 @@
         <li><a ui-sref="login">Login </a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="signup">Sign up</a></li>
+        <li><a ui-sref="signup">Sign up</a></li>
       </ul>
     </div>
   </div>
@@ -58,15 +57,14 @@
 
 
   <ui-view></ui-view>
-  
-<!-- script-->
+
+<!-- SCRIPT TAGS-->
   <script src="/scripts/angular/angular.min.js"></script>
   <script src="/scripts/angular-ui-router/release/angular-ui-router.min.js"></script>
   <script src="/scripts/angular-resource/angular-resource.min.js"></script>
   <script src="/scripts/angular-animate/angular-animate.min.js"></script>
   <script src="/scripts/angular-touch/angular-touch.min.js"></script>
   <script src="/scripts/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-
   <script src="/js/app.js"></script>
   <script src="/js/services.js"></script>
   <script src="/js/controllers.js"></script>
