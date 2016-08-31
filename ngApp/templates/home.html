@@ -9,7 +9,10 @@
     <a ui-sref="landing-page">Welcome</a>
     <!-- ADD USER / LOCATION ICONS -->
     <div class="row">
-      <div class="col-xs-1"> <img src="images/adduser.png" ui-sref="" width="50" height="50" alt="adduser" />
+      <div class="col-xs-1">
+        <img src="images/adduser.png"
+        width="50" height="50"
+        alt="adduser" />
       </div>
       <div class="col-xs-1">
       </div>
@@ -29,7 +32,12 @@
       </div>
       <div class="col-xs-1">
       </div>
-      <div class="col-xs-1"> <img src="http://simpleicon.com/wp-content/uploads/add-location-128x128.png" ui-sref="" width="50" height="50" alt="addlocation" > <input placeholder="Whats going on?">
+      <div class="col-xs-1">
+        <img src="http://simpleicon.com/wp-content/uploads/add-location-128x128.png"
+        width="50" height="50"
+        alt="addlocation"
+        ng-click="vm.showModal()">
+        <!-- add input box text are, cursor , -->
       </div>
       <div class="col-xs-1">
       </div>
@@ -37,7 +45,9 @@
 <!-- PORTFOLIO PHOTO -->
   <div class="row">
     <div class="col-xs-3 home-bio">
-      <img src = "http://4vector.com/i/free-vector-egg-icon_101770_Egg_icon.png" width="75" height="75" alt="portfolio-photo"/>
+      <img src = "http://4vector.com/i/free-vector-egg-icon_101770_Egg_icon.png"
+      width="75" height="75"
+      alt="portfolio-photo"/>
       <a ui-sref="edit-profile">edit</a>
       <p>
         <input placeholder="Name">
@@ -81,7 +91,7 @@
       </div>
       <div class="col-xs-9">
         <p>
-          My first check-in using ClubfFeed. I love this app, it gives me live newsfeed about the local nightclubs near my area. I'm meeting awesome people and its the ultimate my nightlife experience.,
+          My first check-in using ClubfFeed. I love this app, it gives me live newsfeed about the local nightclubs near my area. I'm meeting awesome people and its the ultimate nightlife experience.
         </p>
       </div>
 
@@ -95,13 +105,6 @@
 
 
 
-<!-- compose new check-in-->
-<!--<aside>
-      <input placeholder="New check-in">
-      <button type="button" name="button">Submit</button>
-  </div>
-  </div>
-</aside>-->
 
 
 
