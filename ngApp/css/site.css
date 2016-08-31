@@ -29,10 +29,15 @@ body {
 {
   background-color: #fff;
   height: 800px;
-  margin: 5px 5px 5px 5px;
-  padding: 5px;
   border: #000 solid 2px;
 }
 .center {
  text-align: center;
+}
+.about {
+  background: #fff;
+  height: 300px;
+}
+footer {
+  text-align: center;
 }
