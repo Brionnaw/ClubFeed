@@ -42,6 +42,12 @@ namespace app {
       templateUrl: '/templates/edit-profile.html',
       controller: app.Controllers.HomeController,
       controllerAs: 'vm'
+    })
+    .state('notifications', {
+      url: '/notifications',
+      templateUrl: '/templates/notifications.html',
+      controller: app.Controllers.HomeController,
+      controllerAs: 'vm'
     });
 
     $urlRouterProvider.otherwise('/');

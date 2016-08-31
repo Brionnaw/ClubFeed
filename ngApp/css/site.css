@@ -1,3 +1,12 @@
 body {
   background: #ccc;
 }
+.check-in {
+  background-color:transparent;
+  height: 100px;
+
+  border: #000 solid 1px;
+}
+.home-bio {
+  border: #000 solid 1px;
+}
