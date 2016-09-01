@@ -4,7 +4,7 @@ namespace app.Controllers {
             this.$uibModal.open({
                 templateUrl: '/templates/newLocation.html',
                 controller: 'DialogController',
-                controllerAs: 'modal',
+                controllerAs: 'vm',
                 resolve: {
                     newLocation: () => newLocation
                 },
@@ -14,11 +14,19 @@ namespace app.Controllers {
         constructor(private $uibModal: angular.ui.bootstrap.IModalService) { }
     }
     angular.module('app').controller('HomeController', HomeController);
-    class DialogController {
+
+    export class DialogController { // controller talks to the comment modal.
+        public commentInput;
         public ok() {
-            this.$uibModalInstance.close();
+          console.log(this.commentInput);
+          this.feedService.createComment(this.commentInput)
+          //  this.$uibModalInstance.close();
         }
-        constructor(public newLocation: string, private $uibModalInstance: angular.ui.bootstrap.IModalServiceInstance) { }
+        constructor(
+          public newLocation: string,
+          private $uibModalInstance: angular.ui.bootstrap.IModalServiceInstance,
+          private feedService: app.Services.FeedService) {
+          }
     }
     angular.module('app').controller('DialogController', DialogController);
 }

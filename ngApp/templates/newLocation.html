@@ -6,9 +6,11 @@
     </h3>
   </div>
   <div class="modal-body">
-    <h1>
-      <input placeholder="What's going on?"> {{modal.newLocation}}</h1>
+      <textarea
+      placeholder="What's going on?"
+      class="addComment"
+      ng-model="vm.commentInput"> {{vm.newLocation}}</textarea>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-primary" ng-click="modal.ok()">Submit</button>
+      <button class="btn btn-primary" ng-click="vm.ok()" >Submit</button>
     </div>
