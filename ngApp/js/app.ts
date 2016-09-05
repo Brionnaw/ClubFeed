@@ -48,6 +48,16 @@ namespace app {
       templateUrl: '/templates/notifications.html',
       controller: app.Controllers.HomeController,
       controllerAs: 'vm'
+    }).state('addComments', {
+      url: '/addComments/:id',
+      templateUrl: '/templates/addComments.html',
+      controller: app.Controllers.AddCommentsController,
+      controllerAs: 'vm'
+    }).state('deleteComments', {
+      url: '/deleteComments/:id',
+      templateUrl: '/templates/deleteComments.html',
+      controller: app.Controllers.DeleteCommentsController,
+      controllerAs: 'vm'
     });
 
     $urlRouterProvider.otherwise('/');
