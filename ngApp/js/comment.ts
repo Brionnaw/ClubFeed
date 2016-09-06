@@ -1,54 +1,31 @@
-import express = require('express');
-let router = express.Router();
+
+let mongoose = require('mongoose');
+let Schema = mongoose.Schema;
+
+let CommentSchema = new Schema({
+    title: String,
+    genre: String
+});
+
+let comments = mongoose.model("comments", CommentSchema);
+
 let mongoose = require('mongoose');
 
-//models
-  let Comments = mongoose.model('Comment', {
-    status: String,
-    dateCreated: Date,
-    dateDeleted:{
-      type: Date,
-      default: null
-    }
-  });
+mongoose.connect('mongodb://localhost/club-feed');
 
-  // unique comment id
-let commentId = Comments.length;
-
-/* GET comments */
-router.get('/comments', function(req, res, next) {
-    Comments.find({dateDeleted: null}).then((comments) => {
-        console.log(comments);
-      res.json(comments);
-    })
+let db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log('we are connected!')
 });
 
-/* Post to create or update movie */
-router.post('/comments', function(req, res, next) {
-  if(req.body.id == undefined) {
-    let comments = req.body;
+let comments = mongoose.model('Comments', {status: String});
 
-    let newComments = new Comments({
-      Status: comments.status,
-      dateCreated: new Date()
-    });
-      newComments.save((err, res) => {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log(res);
-        }
-      })
-  }
-  else {
-    Comments.findByIdAndUpdate(req.body.id, {$set: {status: req.body.status}}).then((err,) => {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log(res);
-        }
-    })
+let comments = new comments({ status: 'just check-in with clubfeed'});
+newComments.save(function (err, comments) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(comments);
 
-  }
-    res.send('success');
-});
+})

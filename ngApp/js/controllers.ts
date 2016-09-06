@@ -1,9 +1,11 @@
+// this file is used to pass data to services
 namespace app.Controllers {
+    // HomeController // used for modal comment
     export class HomeController {
         public showModal(newLocation: string) {
             this.$uibModal.open({
                 templateUrl: '/templates/newLocation.html',
-                controller: 'DialogController',
+                controller: 'ModalController', // add seperate controller for the "ANGULAR" modal but not switching states.
                 controllerAs: 'vm',
                 resolve: {
                     newLocation: () => newLocation
@@ -15,11 +17,11 @@ namespace app.Controllers {
     }
     angular.module('app').controller('HomeController', HomeController);
 
-    export class DialogController { // controller talks to the comment modal.
-        public commentInput;
+      //Dialog Controllers // used for feed service to input comment
+    export class ModalController { // controller talks to the comment modal.
+        public postInput; // bind date to input
         public ok() {
-          console.log(this.commentInput);
-          this.feedService.createComment(this.commentInput)
+          this.feedService.createPost(this.postInput) 
           //  this.$uibModalInstance.close();
         }
 
@@ -29,51 +31,9 @@ namespace app.Controllers {
           private feedService: app.Services.FeedService) {
           }
     }
-    // addCommentsController
-export class AddCommentsController {
-    public Comments;
-    public id;
-    public save() {
-      let params = {
-        status: this.Comments.status,
-        id : this.id
-      }
-    this.addCommentsService.save(params).then(() => {
-      this.$state.go('Home');
-    })
-  }
-    constructor (
-      private addCommentsService: app.Services.AddCommentsService,
-      public $state:ng.ui.IStateService,
-      public $stateParams: ng.ui.IStateParamsService
-    ) {
-    if($stateParams)  {
-      this.id = $stateParams["id"];
-      }
-    }
-}
-// DeleteCommentsController
- export class DeleteCommentsController {
-   public id;
-   public remove() {
-     this.deleteCommentsService.remove(this.id).then(()=> {
-       this.$state.go('Home');
-     })
-   }
-   constructor (
-     private deleteCommentsService: app.Services.DeleteCommentsService,
-     public $state:ng.ui.IStateService,
-     public $stateParams: ng.ui.IStateParamsService
-   ) {
-   if($stateParams)  {
-     this.id = $stateParams["id"];
-     console.log(this.id);
-     }
-   }
- }
-    angular.module('app').controller('DialogController', DialogController);
-    angular.module('app').controller('AddCommentsController', AddCommentsController);
-    angular.module('app').controller('DeleteCommentsController', DeleteCommentsController);
+
+    angular.module('app').controller('ModalController', ModalController);
+
 
 
 }

@@ -1,5 +1,6 @@
 body {
   background: #C9DADD  ;
+  font-family: sans-serif;
 }
 .check-in {
   background-color:#fff;
@@ -32,15 +33,19 @@ body {
   border: #000 solid 2px;
 }
 .center {
+  font-family:serif;
  text-align: center;
 }
 .about {
-  background: #fff;
-  height: 300px;
+  background: #ccc;
+  height: 200px;
 }
 footer {
   text-align: center;
 }
 .addComment {
   width:100%;
+}
+.landing-background {
+  background-image: 'http://2.bp.blogspot.com/-D8lQd7hfU9g/UZRr0WZtx-I/AAAAAAAACN4/B0ESFC_Jkiw/s1600/gps-location.png'
 }

@@ -1,12 +1,13 @@
-<div class="modal-header">
-    <h3 class="modal-title">Login:</h3>
-</div>
-<div class="modal-body">
-    <h1>
-      <input placeholder="username or email"> {{modal.animalName}}</h1>
-        <input placeholder="password"> {{modal.animalName}}</h1>
 
-</div>
-<div class="modal-footer">
-    <button class="btn btn-primary" ng-click="modal.ok()">Login</button>
-</div>
+<h1>Login</h1>
+<form ng-submit="vm.login()">
+  <div>
+    <label>Email</label>
+    <input ng-model="vm.user.email">
+  </div>
+  <div>
+    <label>Password</label>
+    <input ng-model="vm.user.password">
+  </div>
+  <button>Submit</button>
+</form>

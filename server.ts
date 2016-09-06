@@ -1,3 +1,4 @@
+// this file is to pass data to route file
 require('dotenv').config({ silent: true });
 import express = require('express');
 import favicon = require('serve-favicon');
@@ -27,6 +28,7 @@ app.use(cookieParser());
 
 app.use(express.static('./ngApp'));
 app.use('/scripts', express.static('bower_components'));
+app.use("/api", require("./api/posts")) // add this route folder/file to server
 
 app.get('/*', function(req, res, next) {
   if (/.js|.html|.css|templates|js|scripts/.test(req.path) || req.xhr) {
