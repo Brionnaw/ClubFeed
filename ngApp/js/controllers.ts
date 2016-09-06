@@ -2,6 +2,7 @@
 namespace app.Controllers {
     // HomeController // used for modal comment
     export class HomeController {
+        public posts;
         public showModal(newLocation: string) {
             this.$uibModal.open({
                 templateUrl: '/templates/newLocation.html',
@@ -13,7 +14,13 @@ namespace app.Controllers {
                 size: 'md'
               });
         }
-        constructor(private $uibModal: angular.ui.bootstrap.IModalService) { }
+        constructor(
+          private $uibModal: angular.ui.bootstrap.IModalService,
+          private feedService: app.Services.FeedService)
+         {
+           this.posts = this.feedService.getAllPosts()
+           console.log(this.posts);
+        }
     }
     angular.module('app').controller('HomeController', HomeController);
 
@@ -21,8 +28,10 @@ namespace app.Controllers {
     export class ModalController { // controller talks to the comment modal.
         public postInput; // bind date to input
         public ok() {
-          this.feedService.createPost(this.postInput) 
-          //  this.$uibModalInstance.close();
+          this.feedService.createPost(this.postInput).then((res) => { // res is located in post.ts
+            this.$uibModalInstance.close(); // closes modal
+          })
+
         }
 
         constructor(

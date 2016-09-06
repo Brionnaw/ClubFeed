@@ -91,9 +91,9 @@
         width="75" height="75"
         alt="user-photo"/>
       </div>
-      <div class="col-xs-9">
+      <div ng-repeat="m in vm.posts" class="col-xs-9">
         <p>
-          My first check-in using ClubfFeed. I love this app, it gives me live newsfeed about the local nightclubs near my area. I'm meeting awesome people and its the ultimate nightlife experience.
+          {{m.text}}
         </p>
         <button ng-click="vm.remove()">Delete</button>
         <button ng-click="vm.remove()">edit</button>

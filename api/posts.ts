@@ -13,7 +13,7 @@
     // add usernames
   })
 
-
+// CREATE
  router.post("/posts", function(req, res) { // express does not like fat arrow :-(;
    // use postman to check error with endpoints post request (localhost:3000/api/posts)
    let newPost = new Post({
@@ -28,10 +28,19 @@
        console.log(res)
      }
    })
-   
-   res.send('success!');
- } )
 
+   res.send('success')
+  // send back to services, and services.promises send to controllers
+   // convert res.send( json format)
+ })
+
+ // GET
+ router.get('/posts', function(req, res) {
+   Post.find({}).then(function(allPosts) { // getting all posts
+    res.json(allPosts)
+    
+   })
+ })
 
 
 
