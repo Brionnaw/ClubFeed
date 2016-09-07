@@ -43,10 +43,10 @@ namespace app {
       controller: app.Controllers.HomeController,
       controllerAs: 'vm'
     })
-    .state('notifications', {
-      url: '/notifications',
-      templateUrl: '/templates/notifications.html',
-      controller: app.Controllers.HomeController,
+    .state('editPosts', {
+      url: '/editPosts/:info',
+      templateUrl: '/templates/editPosts.html',
+      controller: app.Controllers.EditController,
       controllerAs: 'vm'
     });
 

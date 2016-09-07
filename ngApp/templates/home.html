@@ -97,15 +97,12 @@
           {{p.text}}
         </p>
         <button ng-click="vm.remove(p._id, $index) ">Delete</button>
-        <button ng-click="vm.remove(p._id)">edit</button>
+        <button ui-sref="editPosts({info: [p._id, p.text]})">edit</button>
       </div>
     </div>
   </div>
 
 <!-- NEWS FEED-->
-
-
-
 
 
 

@@ -1,9 +1,11 @@
 <form ng-submit="vm.save()">
      <div>
        <label>Status:</label>
-       <input ng-model="vm.comments.status"/>
+          <textarea ng-model="vm.text" rows="8" cols="40"></textarea>
      </div>
      <div>
        <button> Edit Comments</button>
      </div>
    </form>
+
+<!-- ng. model : binding scope variables -->
