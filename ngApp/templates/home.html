@@ -91,12 +91,13 @@
         width="75" height="75"
         alt="user-photo"/>
       </div>
-      <div ng-repeat="m in vm.posts" class="col-xs-9">
+      <div ng-repeat="p in vm.posts track by $index" class="col-xs-9">
+
         <p>
-          {{m.text}}
+          {{p.text}}
         </p>
-        <button ng-click="vm.remove()">Delete</button>
-        <button ng-click="vm.remove()">edit</button>
+        <button ng-click="vm.remove(p._id, $index) ">Delete</button>
+        <button ng-click="vm.remove(p._id)">edit</button>
       </div>
     </div>
   </div>

@@ -8,43 +8,58 @@
   let Post = mongoose.model('Post', { // "," seperate parameters, {pass in name of model , object w| properties, values types}
     text: String,
     dateCreated: Date,
+    dateDeleted: {
+      type: Date,
+      default: null
+    }
     // latitude: String,
     // longitude: String
     // add usernames
   })
 
-// CREATE
- router.post("/posts", function(req, res) { // express does not like fat arrow :-(;
-   // use postman to check error with endpoints post request (localhost:3000/api/posts)
+// POST TO UPDATE OR CREATE POSTS
+ router.post('/posts', function(req, res) {   // express does not like fat arrow :-(;
+  // use postman to check error with endpoints post request (localhost:3000/api/posts)
    let newPost = new Post({
      text: req.body.text,
      dateCreated:new Date()
    })
 
-   newPost.save((err, res) => {
+   newPost.save((err, post) => {
+
      if(err){
        console.log(err)
      } else {
-       console.log(res)
-     }
+       res.send(post);
+      }
+
    })
 
-   res.send('success')
   // send back to services, and services.promises send to controllers
    // convert res.send( json format)
  })
 
- // GET
- router.get('/posts', function(req, res) {
-   Post.find({}).then(function(allPosts) { // getting all posts
+ // get all posts
+ router.get('/posts', function(req , res) {
+   Post.find({dateDeleted:null}).then(function(allPosts) { // getting all posts
     res.json(allPosts)
-    
-   })
- })
 
+  });
+ });
+// delete post
+router.delete('/posts/:id', function (req, res) {
+    console.log('hit')
+    // use postman to debug for backend
+  Post.findByIdAndUpdate(req.params["id"], {$set:{dateDeleted:new Date()}}, (err, res) => {
+    if (err) {
+         console.log(err);
+       } else {
+         console.log(res);
+       }
+     });
 
-
-
+     res.send('success!')
+  });
 
 
 
