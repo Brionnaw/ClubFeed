@@ -7,6 +7,7 @@
   // models
   let Post = mongoose.model('Post', { // "," seperate parameters, {pass in name of model , object w| properties, values types}
     text: String,
+    comments:Array,
     dateCreated: Date,
     dateDeleted: {
       type: Date,
@@ -20,12 +21,13 @@
 // POST TO UPDATE OR CREATE POSTS
  router.post('/posts', function(req, res) {   // express does not like fat arrow :-(;
   // use postman to check error with endpoints post request (localhost:3000/api/posts)
-
+  console.log(req.body.text)
     if(req.body.id === undefined){
       let newPost = new Post({
         text: req.body.text,
         dateCreated:new Date()
       })
+
       newPost.save((err, post) => {
 
         if(err){
@@ -57,6 +59,7 @@
     res.json(allPosts)
 
   });
+
  });
 // delete post
 router.delete('/posts/:id', function (req, res) {

@@ -4,13 +4,13 @@ namespace app.Controllers {
     export class HomeController {
         public posts;
         // Show modal
-        public showModal(newLocation: string) {
+        public showModal(createPost: string) {
             this.$uibModal.open({
-                templateUrl: '/templates/newLocation.html',
+                templateUrl: '/templates/createPost.html',
                 controller: 'ModalController', // add seperate controller for the "ANGULAR" modal but not switching states.
                 controllerAs: 'vm',
                 resolve: {
-                    newLocation: () => newLocation
+                    createPost: () => createPost
                 },
                 size: 'md'
               });
@@ -47,8 +47,12 @@ namespace app.Controllers {
       //Dialog Controller // used for feed service to input comment
     export class ModalController { // controller talks to the comment modal.
         public postInput; // bind date to input
-        public ok() {
-          this.feedService.createPost(this.postInput).then((res) => { // res is located in post.ts
+        public createPost() {
+          let info = {
+            text: this.postInput,
+            id: undefined
+          }
+          this.feedService.createPost(info).then((res) => { // res is located in post.ts
             this.$uibModalInstance.close(); // closes modal
             window.location.reload(); // forces the window to refresh
           })
@@ -56,7 +60,6 @@ namespace app.Controllers {
         }
 
         constructor(
-          public newLocation: string,
           private $uibModalInstance: angular.ui.bootstrap.IModalServiceInstance,
           private feedService: app.Services.FeedService) {
           }

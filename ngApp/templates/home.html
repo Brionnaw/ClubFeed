@@ -87,17 +87,21 @@
     </div>
     <div class="row live-feed">
       <div class="col-xs-3">
-        <img src = "http://4vector.com/i/free-vector-egg-icon_101770_Egg_icon.png"
+      <!--  <img src = "http://4vector.com/i/free-vector-egg-icon_101770_Egg_icon.png"
         width="75" height="75"
-        alt="user-photo"/>
+        alt="user-photo"/> -->
       </div>
       <div ng-repeat="p in vm.posts track by $index" class="col-xs-9">
 
-        <p>
-          {{p.text}}
-        </p>
+        <div>
+        {{p.text}}     <!-- this shows texts on page load -->
+      </div>
+      <div>
+        {{p.dateCreated  | date: 'short'}} <!-- this filter shortens time format -->
+      </div>
+
         <button ng-click="vm.remove(p._id, $index) ">Delete</button>
-        <button ui-sref="editPosts({info: [p._id, p.text]})">edit</button>
+        <button ui-sref="editPosts({info: [p._id, p.text]})">Edit</button>
       </div>
     </div>
   </div>

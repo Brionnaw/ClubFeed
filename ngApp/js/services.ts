@@ -11,10 +11,10 @@ namespace app.Services {
         text: postData.text,
         id: postData.id
       }
+      console.log(postData)
       return this.FeedResource.save(post).$promise // create an object inside a method.
-      // $promise - 'chain a promise' go back to the controllers to where this is called.
+    //   // $promise - 'chain a promise' go back to the controllers to where this is called.
     }
-
     public deletePost(id) {
       return this.FeedResource.remove({id: id}).$promise
 
