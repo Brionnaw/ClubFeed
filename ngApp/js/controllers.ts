@@ -24,7 +24,7 @@ namespace app.Controllers {
                   //splice - take out the array
               });
             } else {
-              console.log('not deleted')
+              // console.log('not deleted')
               }
           }
 
@@ -35,7 +35,6 @@ namespace app.Controllers {
 
           private $uibModal: angular.ui.bootstrap.IModalService,
           private feedService: app.Services.FeedService,
-          public $state:ng.ui.IStateService,
           public $stateParams: ng.ui.IStateParamsService
 
         ) {
@@ -68,15 +67,28 @@ namespace app.Controllers {
     export class EditController {
       public text;
       public id;
+      public update(){
+        let info = {
+          text: this.text,
+          id: this.id
+        }
+        this.feedService.createPost(info).then((res) =>  {
+          this.$state.go('Home')
+        })
+
+
+      }
       constructor (
-        public $stateParams: ng.ui.IStateParamsService
-      ) {
+        public $stateParams: ng.ui.IStateParamsService,
+        private feedService: app.Services.FeedService, // dependencies injection give access to services
+        public $state:ng.ui.IStateService)
+
+        {
         if($stateParams){
           let seperate = $stateParams["info"].split(","); // create a new array and split into two strings.
           this.id = seperate[0] // number is defined by array to have access to each variable seperately.
-          console.log(this.id)
           this.text = seperate[1]
-          console.log(this.text)
+
 
 
         }
@@ -84,4 +96,6 @@ namespace app.Controllers {
           console.log('Do not exist!')
         }
       }
-}}
+  }
+  angular.module('app').controller('EditController', EditController);
+}
