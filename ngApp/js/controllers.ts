@@ -110,22 +110,32 @@ namespace app.Controllers {
   }
   angular.module('app').controller('RegisterController', RegisterController);
 
-  //LOGIN CONROLLER
+  //LOGIN CONTROLLER
   export class LoginController{
     public user;
     public login(){
       this.userService.login(this.user).then((res) => {
         if(res.message === "Correct"){
+
+          window.localStorage["token" ] =res.jwt;
           this.$state.go('Home');
         } else {
           alert(res.message);
         }
       });
-
-}
+    }
     constructor( private  userService: app.Services.UserService,
                   public $state: ng.ui.IStateService
     ){
+      // TOKEN
+      let token = window.localStorage["token"];
+      if(token) {
+      let payload = JSON.parse(window.atob(token.split('.')[1]));
+      if(payload.exp > Date.now()/ 1000) {
+        this.$state.go('Home');
+
+      }
+    }
     }
   }
   angular.module('app').controller('LoginController', LoginController);
