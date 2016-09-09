@@ -114,12 +114,15 @@ namespace app.Controllers {
   export class LoginController{
     public user;
     public login(){
-      this.userService.login(this.user).then((message) => {
-        console.log(message);
-        this.$state.go('Home');
+      this.userService.login(this.user).then((res) => {
+        if(res.message === "Correct"){
+          this.$state.go('Home');
+        } else {
+          alert(res.message);
+        }
       });
 
-    }
+}
     constructor( private  userService: app.Services.UserService,
                   public $state: ng.ui.IStateService
     ){
