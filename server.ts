@@ -8,7 +8,7 @@ import bodyParser = require('body-parser');
 const app = express();
 let mongoose = require ('mongoose');
 //database connection
-  mongoose.connect('mongodb://localhost/club-feed');
+  mongoose.connect('mongodb://localhost/club-feed/users');
   let db = mongoose.connection;  //  making variable connect to the connection
   db.on('error', console.error.bind(console, 'connection error'));
   db.once('open', () => {
@@ -29,6 +29,7 @@ app.use(cookieParser());
 app.use(express.static('./ngApp'));
 app.use('/scripts', express.static('bower_components'));
 app.use("/api", require("./api/posts")) // add this route folder/file to server
+app.use('/api', require('./api/users')); // user.ts file
 
 app.get('/*', function(req, res, next) {
   if (/.js|.html|.css|templates|js|scripts/.test(req.path) || req.xhr) {
@@ -37,6 +38,7 @@ app.get('/*', function(req, res, next) {
     return res.render('index');
   }
 });
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

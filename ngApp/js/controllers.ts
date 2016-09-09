@@ -27,7 +27,6 @@ namespace app.Controllers {
               // console.log('not deleted')
               }
           }
-
           //Edit Comment
           public edit(){
           }
@@ -56,9 +55,7 @@ namespace app.Controllers {
             this.$uibModalInstance.close(); // closes modal
             window.location.reload(); // forces the window to refresh
           })
-
         }
-
         constructor(
           private $uibModalInstance: angular.ui.bootstrap.IModalServiceInstance,
           private feedService: app.Services.FeedService) {
@@ -78,8 +75,6 @@ namespace app.Controllers {
         this.feedService.createPost(info).then((res) =>  {
           this.$state.go('Home')
         })
-
-
       }
       constructor (
         public $stateParams: ng.ui.IStateParamsService,
@@ -91,14 +86,27 @@ namespace app.Controllers {
           let seperate = $stateParams["info"].split(","); // create a new array and split into two strings.
           this.id = seperate[0] // number is defined by array to have access to each variable seperately.
           this.text = seperate[1]
-
-
-
         }
         else {
           console.log('Do not exist!')
         }
       }
   }
+
   angular.module('app').controller('EditController', EditController);
+
+  // REGISTER controller
+  export class RegisterController{
+      public user;
+      public register(){
+        this.userService.register(this.user).then(() => {
+          this.$state.go('Home');
+        });
+      }
+        constructor(
+          private userService: app.Services.UserService,
+          public $state: ng.ui.IStateService) {
+      }
+  }
+  angular.module('app').controller('RegisterController', RegisterController);
 }

@@ -8,26 +8,26 @@ namespace app {
 
     $stateProvider.state('Home', {
       url: '/Home',
-      templateUrl: '/templates/Home.html',
+      templateUrl: '/templates/home.html',
       controller: app.Controllers.HomeController,
       controllerAs: 'vm'
     })
-    .state('landing-page', {
-      url: '/',
+    .state('Landing-page', {
+      url: '/landing-page',
       templateUrl: '/templates/landing-page.html',
       controller: app.Controllers.HomeController,
       controllerAs: 'vm'
     })
-    .state('login', {
-      url: '/login',
+    .state('Login', {
+      url: '/',
       templateUrl: '/templates/login.html',
       controller: app.Controllers.HomeController,
       controllerAs: 'vm'
     })
-    .state('signup', {
-      url: '/signup',
-      templateUrl: '/templates/signup.html',
-      controller: app.Controllers.HomeController,
+    .state('Register', {
+      url: '/Register',
+      templateUrl: '/templates/register.html',
+      controller: app.Controllers.RegisterController,
       controllerAs: 'vm'
     })
 

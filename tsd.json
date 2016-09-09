@@ -6,13 +6,43 @@
   "bundle": "typings/tsd.d.ts",
   "installed": {
     "mongoose/mongoose.d.ts": {
-      "commit": "084e55916674ff7128722bf72150aa55acea08d9"
+      "commit": "24256654f843c18fe44c71558b6a9d98ae8c7f4b"
     },
     "mongodb/mongodb.d.ts": {
-      "commit": "084e55916674ff7128722bf72150aa55acea08d9"
+      "commit": "24256654f843c18fe44c71558b6a9d98ae8c7f4b"
     },
     "node/node.d.ts": {
-      "commit": "084e55916674ff7128722bf72150aa55acea08d9"
+      "commit": "24256654f843c18fe44c71558b6a9d98ae8c7f4b"
+    },
+    "body-parser/body-parser.d.ts": {
+      "commit": "24256654f843c18fe44c71558b6a9d98ae8c7f4b"
+    },
+    "express/express.d.ts": {
+      "commit": "24256654f843c18fe44c71558b6a9d98ae8c7f4b"
+    },
+    "serve-static/serve-static.d.ts": {
+      "commit": "24256654f843c18fe44c71558b6a9d98ae8c7f4b"
+    },
+    "express-serve-static-core/express-serve-static-core.d.ts": {
+      "commit": "24256654f843c18fe44c71558b6a9d98ae8c7f4b"
+    },
+    "express-jwt/express-jwt.d.ts": {
+      "commit": "24256654f843c18fe44c71558b6a9d98ae8c7f4b"
+    },
+    "mime/mime.d.ts": {
+      "commit": "24256654f843c18fe44c71558b6a9d98ae8c7f4b"
+    },
+    "express-unless/express-unless.d.ts": {
+      "commit": "24256654f843c18fe44c71558b6a9d98ae8c7f4b"
+    },
+    "jsonwebtoken/jsonwebtoken.d.ts": {
+      "commit": "24256654f843c18fe44c71558b6a9d98ae8c7f4b"
+    },
+    "passport-local/passport-local.d.ts": {
+      "commit": "24256654f843c18fe44c71558b6a9d98ae8c7f4b"
+    },
+    "passport/passport.d.ts": {
+      "commit": "24256654f843c18fe44c71558b6a9d98ae8c7f4b"
     }
   }
 }

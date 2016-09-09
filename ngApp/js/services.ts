@@ -5,7 +5,7 @@ namespace app.Services {
     public getAllPosts(){
       return this.FeedResource.query();
 
-        }
+    }
     public createPost(postData) { // postData:string represent  an string but usaully is an object
       let post = {
         text: postData.text,
@@ -26,7 +26,24 @@ namespace app.Services {
       this.FeedResource = $resource('/api/posts/:id') // use FeedResource to call this api endpoints // you can use one word to peform different operations.
     }
   }
+    export class UserService {
+        public RegisterResource;
 
-  angular.module('app').service('feedService', FeedService);
+        public register(user){
+          console.log(user);
+          return this.RegisterResource.save(user).$promise;
+        }
 
+      constructor(
+      
+        $resource:ng.resource.IResourceService
+      ){
+
+        this.RegisterResource = $resource('api/users/register');
       }
+    }
+
+  angular.module('app').service('feedService', FeedService),
+  angular.module('app').service('userService', UserService);
+
+    }

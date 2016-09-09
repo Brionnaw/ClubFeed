@@ -1,13 +1,22 @@
-
-<h1>Login</h1>
-<form ng-submit="vm.login()">
-  <div>
-    <label>Email</label>
-    <input ng-model="vm.user.email">
+<form class="col-sm-6 col-sm-offset-3">
+  <h3 class="page-header text-center">Login</h3>
+  <div class="form-group">
+    <label>Username</label>
+    <input type="text"
+    class="form-control"
+    placeholder="Username"
+    ng-model="vm.user.username">
   </div>
-  <div>
+  <div class="form-group">
     <label>Password</label>
-    <input ng-model="vm.user.password">
+    <input type="text"
+    class="form-control"
+    placeholder="Password"
+    ng-model="vm.user.password">
   </div>
-  <button>Submit</button>
+  <input type="submit"
+  class="btn btn-primary btn-block"
+  value="Login"
+  ng-click="vm.login()">
+  <a ui-sref="Register" style="float:left;">Register</a>
 </form>
