@@ -28,18 +28,27 @@ namespace app.Controllers {
               }
           }
           //Edit Comment
-          public edit(){
-          }
+          // public edit(){
+          // }
         constructor(
 
           private $uibModal: angular.ui.bootstrap.IModalService,
           private feedService: app.Services.FeedService,
-          public $stateParams: ng.ui.IStateParamsService
+          public $stateParams: ng.ui.IStateParamsService,
+          public $state:ng.ui.IStateService
+
 
         ) {
-           this.posts = this.feedService.getAllPosts()
-        }
-    }
+           this.posts = this.feedService.getAllPosts() // this line get all posts
+
+           let token = window.localStorage["token"];
+           if(token) {
+            console.log('logged in') // redirect user to login if token is expired.
+           } else {
+             this.$state.go('Login')
+         }
+       }
+     }
     angular.module('app').controller('HomeController', HomeController);
 
 
@@ -136,7 +145,7 @@ namespace app.Controllers {
 
       }
     }
-    }
   }
+}
   angular.module('app').controller('LoginController', LoginController);
 }
