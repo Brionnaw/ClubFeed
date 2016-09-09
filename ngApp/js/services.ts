@@ -9,7 +9,8 @@ namespace app.Services {
     public createPost(postData) { // postData:string represent  an string but usaully is an object
       let post = {
         text: postData.text,
-        id: postData.id
+        id: postData.id,
+        author:postData.username
       }
       console.log(postData)
       return this.FeedResource.save(post).$promise // create an object inside a method.

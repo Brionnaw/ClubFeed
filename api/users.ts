@@ -11,45 +11,72 @@ let User = mongoose.model("User",{
     email: String,
     username:{
    type:String,
-   unique:true
- },
+   unique:true},
   password: String,
   salt:String,
 })
 
 // POST - register user
 router.post('/users/register', function(req, res) {
-    console.log(req.body);
-    res.send('success');
-//   let salt = crypto.randomBytes(16).toString('hex');
-//   let hash = crypto.pbkdf2Sync(req.body.password, salt, 1000, 64).toString('hex');
-// let newUser = new User({
-//   email: req.body.email,
-//   username:req.body.username,
-//   password:hash,
-//   salt:salt
-// })
-// // Post - save user
-// newUser.save((err, user) => {
-//    if(err) {
-//      console.log;
-//      res.send(err);
-//    }else {
-//      console.log(res);
-//      res.send(user);
-//   }
-//   })
+  User.find({username: req.body.username}, function(err, user) {
+    // this is for checking if username exist
+    if(user.length < 1) {
+
+
+      let salt = crypto.randomBytes(16).toString('hex');
+      let hash = crypto.pbkdf2Sync(req.body.password, salt, 1000, 64).toString('hex');
+      let newUser = new User({
+        email: req.body.email,
+        username:req.body.username,
+        password:hash,
+        salt:salt
+      })
+    // Post - save user
+    newUser.save((err, user) => {
+       if(err) {
+         console.log;
+         res.send(err);
+       }else {
+         console.log(res);
+         res.send(user);
+      }
+      })
+    } else {
+      res.send({message:'username already exist'});
+    }
+
+  //  this is for register user
+  let salt = crypto.randomBytes(16).toString('hex');
+  let hash = crypto.pbkdf2Sync(req.body.password, salt, 1000, 64).toString('hex');
+  let newUser = new User({
+    email: req.body.email,
+    username:req.body.username,
+    password:hash,
+    salt:salt
+  })
+// Post - save user
+newUser.save((err, user) => {
+   if(err) {
+     console.log;
+     res.send(err);
+   }else {
+     console.log(res);
+     res.send(user);
+  }
+
+  })
+})
 });
+
 //POST - login user
  router.post('/users/login', function(req, res) {
    User.find({username: req.body.username}, function(err, user) {
-  if(user.length <1) {
+  if(user.length < 1) {
   res.send({message:'incorrect username'});
   }else{
   let hash =  crypto.pbkdf2Sync(req.body.password, user[0].salt, 1000, 64).toString('hex');
   let today = new Date();
   let exp = new Date(today);
-
   exp.setDate(today.getDate()+ 36500);
 //TOKEN
   let token = jwt.sign({

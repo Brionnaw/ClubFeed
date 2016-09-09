@@ -65,8 +65,12 @@ namespace app.Controllers {
     export class ModalController { // controller talks to the comment modal.
         public postInput; // bind date to input
         public createPost() {
+          let token = window.localStorage["token"];
+          let payload = JSON.parse(window.atob(token.split('.')[1]));
+
           let info = {
             text: this.postInput,
+            username:payload.username,
             id: undefined
           }
           this.feedService.createPost(info).then((res) => { // res is located in post.ts
@@ -114,18 +118,25 @@ namespace app.Controllers {
   angular.module('app').controller('EditController', EditController);
 
   // REGISTER controller
-  export class RegisterController{
+  export class RegisterController {
       public user;
       public register(){
-        this.userService.register(this.user).then(() => {
-          this.$state.go('Home');
+        this.userService.register(this.user).then((res) => {
+          if(res.message === "username already exist") {
+            alert(res.message);
+          } else {
+            this.$state.go("Home");
+          }
         });
       }
-        constructor(
-          private userService: app.Services.UserService,
-          public $state: ng.ui.IStateService) {
+
+      constructor(
+        private userService: app.Services.UserService,
+        public $state: ng.ui.IStateService
+      ) {
+          }
       }
-  }
+
   angular.module('app').controller('RegisterController', RegisterController);
 
   //LOGIN CONTROLLER
