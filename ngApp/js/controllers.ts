@@ -2,7 +2,15 @@
 namespace app.Controllers {
     // HomeController // used for modal comment
     export class HomeController {
+
         public posts;
+
+          // Logout button
+          public logout(){
+            window.localStorage.removeItem('token');
+            this.$state.go("Login");
+          }
+
         // Show modal
         public showModal(createPost: string) {
             this.$uibModal.open({
@@ -15,6 +23,7 @@ namespace app.Controllers {
                 size: 'md'
               });
             }
+
         // Delete Comment
         public remove(postId:string, index:number) {
           let answer = confirm('Are you sure you want to delete?')
