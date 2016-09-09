@@ -30,16 +30,21 @@ namespace app.Services {
         public RegisterResource;
 
         public register(user){
-          console.log(user);
           return this.RegisterResource.save(user).$promise;
         }
+        public LoginResource;
 
+        public login(user){
+          return this.LoginResource.save(user).$promise;
+
+        }
       constructor(
-      
+
         $resource:ng.resource.IResourceService
       ){
 
-        this.RegisterResource = $resource('api/users/register');
+        this.RegisterResource = $resource('api/users/register')
+        this.LoginResource = $resource('api/users/login');
       }
     }
 

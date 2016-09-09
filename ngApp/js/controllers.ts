@@ -109,4 +109,21 @@ namespace app.Controllers {
       }
   }
   angular.module('app').controller('RegisterController', RegisterController);
+
+  //LOGIN CONROLLER
+  export class LoginController{
+    public user;
+    public login(){
+      this.userService.login(this.user).then((message) => {
+        console.log(message);
+        this.$state.go('Home');
+      });
+
+    }
+    constructor( private  userService: app.Services.UserService,
+                  public $state: ng.ui.IStateService
+    ){
+    }
+  }
+  angular.module('app').controller('LoginController', LoginController);
 }

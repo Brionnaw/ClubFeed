@@ -21,7 +21,7 @@ namespace app {
     .state('Login', {
       url: '/',
       templateUrl: '/templates/login.html',
-      controller: app.Controllers.HomeController,
+      controller: app.Controllers.LoginController,
       controllerAs: 'vm'
     })
     .state('Register', {
