@@ -2,6 +2,7 @@
 namespace app.Services {
   export class FeedService {
     public FeedResource;
+    public CommentResource;
     public getAllPosts(){
       return this.FeedResource.query();
 
@@ -20,11 +21,15 @@ namespace app.Services {
       return this.FeedResource.remove({id: id}).$promise
 
       }
+      public addComment(commentInput){
+        this.CommentResource.save(commentInput).$promise
 
+      }
 
 
     constructor(private $resource: ng.resource.IResourceService) {
       this.FeedResource = $resource('/api/posts/:id') // use FeedResource to call this api endpoints // you can use one word to peform different operations.
+      this.CommentResource = $resource('/api/comments/:id')
     }
   }
     export class UserService {

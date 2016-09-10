@@ -167,5 +167,29 @@ namespace app.Controllers {
     }
   }
 }
+
+export class CommentController{
+    public commentInput;
+    public postId;
+    public addComment(
+    ){
+      let comment = {
+        text:this.commentInput,
+        id:this.postId
+      }
+      this.feedService.addComment(comment);
+  }
+
+  constructor(
+    private feedService: app.Services.FeedService,
+    public $stateParams: ng.ui.IStateParamsService
+  ){
+    if($stateParams){
+      this.postId = $stateParams['id']
+    }
+  }
+}
+
+  angular.module('app').controller('CommentController', CommentController);
   angular.module('app').controller('LoginController', LoginController);
 }

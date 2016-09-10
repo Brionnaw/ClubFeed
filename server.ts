@@ -30,6 +30,7 @@ app.use(express.static('./ngApp'));
 app.use('/scripts', express.static('bower_components'));
 app.use("/api", require("./api/posts")) // add this route folder/file to server
 app.use('/api', require('./api/users')); // user.ts file
+app.use('/api', require('./api/comments')); //comments.ts file
 
 app.get('/*', function(req, res, next) {
   if (/.js|.html|.css|templates|js|scripts/.test(req.path) || req.xhr) {

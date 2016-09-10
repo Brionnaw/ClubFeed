@@ -48,8 +48,12 @@ namespace app {
       templateUrl: '/templates/editPosts.html',
       controller: app.Controllers.EditController,
       controllerAs: 'vm'
+    }).state('Comments', {
+      url: '/comments/:id',
+      templateUrl: '/templates/comments.html',
+      controller: app.Controllers.CommentController,
+      controllerAs: 'vm'
     })
-
 
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
