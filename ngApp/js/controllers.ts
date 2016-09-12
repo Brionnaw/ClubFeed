@@ -174,7 +174,7 @@ export class CommentController{
       let comment = {
         text:this.commentInput,
         id:this.postId,
-        username:payload.username
+        username:payload.username,
       }
 
     this.feedService.addComment(comment).then((res) => {

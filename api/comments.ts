@@ -7,7 +7,8 @@
 let Comment = mongoose.model("Comment", {
   text: String,
   postId: String,
-  author:String
+  author:String,
+  dateCreated:Date
 })
 
 
@@ -15,7 +16,8 @@ router.post("/comments", function(req, res){
   let newComment = new Comment({
     text:req.body.text,
     postId:req.body.id,
-    author:req.body.author
+    author:req.body.author,
+    dateCreated:new Date() // date method will generate a new date 
   })
 
 newComment.save((err, comment) => { // run the .save methond on the instance.
