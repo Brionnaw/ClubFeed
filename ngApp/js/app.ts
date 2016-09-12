@@ -31,10 +31,10 @@ namespace app {
       controllerAs: 'vm'
     })
 
-    .state('profile', {
+    .state('Profile', {
       url: '/profile',
       templateUrl: '/templates/profile.html',
-      controller: app.Controllers.HomeController,
+      controller: app.Controllers.ProfileController,
       controllerAs: 'vm'
     })
     .state('edit-profile', {

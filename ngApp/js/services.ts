@@ -36,6 +36,10 @@ namespace app.Services {
           return this.CommentResource.query({id:id});
 
         }
+        public getAllProfilePosts(username){
+          return this.FeedResource.query({id:username})
+
+        }
 
     constructor(private $resource: ng.resource.IResourceService) {
       this.FeedResource = $resource('/api/posts/:id') // use FeedResource to call this api endpoints // you can use one word to peform different operations.

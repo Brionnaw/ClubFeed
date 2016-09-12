@@ -137,7 +137,7 @@ namespace app.Controllers {
           }
       }
   //LOGIN CONTROLLER
-  export class LoginController{
+  export class LoginController {
     public user;
     public login(){
       this.userService.login(this.user).then((res) => {
@@ -165,7 +165,7 @@ namespace app.Controllers {
   }
 }
 //CommentController
-export class CommentController{
+export class CommentController {
     public commentInput;
     public postId;
     public comments;
@@ -207,11 +207,37 @@ export class CommentController{
     }
   }
 }
+ // PROFILE CONTROLLER
+ export class ProfileController {
+   public posts;
+
+
+   constructor(
+
+     private $uibModal: angular.ui.bootstrap.IModalService,
+     private feedService: app.Services.FeedService,
+     public $stateParams: ng.ui.IStateParamsService,
+     public $state:ng.ui.IStateService
+
+   ) {
+      this.posts = this.feedService.getAllProfilePosts(payload.username) // this line get all posts
+
+      let token = window.localStorage["token"];
+      if(token) {
+       console.log('logged in') // redirect user to login if token is expired.
+      } else {
+        this.$state.go('Login')
+    }
+  }
+}
+
 // Registerd Controllers
   angular.module('app').controller('HomeController', HomeController);
   angular.module('app').controller('ModalController', ModalController);
   angular.module('app').controller('LoginController', LoginController);
   angular.module('app').controller('RegisterController', RegisterController);
   angular.module('app').controller('CommentController', CommentController);
+  angular.module('app').controller('ProfileController', ProfileController);
+
 
 }

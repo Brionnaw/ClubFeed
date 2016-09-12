@@ -56,16 +56,21 @@
    // convert res.send( json format)
  })
 
- // get all posts
+ // get all  posts
  router.get('/posts', function(req , res) {
    Post.find({dateDeleted:null}).then(function(allPosts) { // getting all posts
     res.json(allPosts)
 
   });
-
- });
+});
+// get all profile prost
+ router.get('/posts/:id', function (req, res){
+   Post.find({author:req.params["id"]}).then(function(allProfilePosts){
+     res.json(allProfilePosts)
+   })
+ })
 // delete post
-router.delete('/posts/:id', function (req, res) {
+ router.delete('/posts/:id', function (req, res) {
     console.log('hit')
     // use postman to debug for backend
   Post.findByIdAndUpdate(req.params["id"], {$set:{dateDeleted:new Date()}}, (err, res) => {
