@@ -199,9 +199,11 @@ export class CommentController{
     private feedService: app.Services.FeedService,
     public $stateParams: ng.ui.IStateParamsService
   ){
-    this.comments = [];
-    if($stateParams){
-      this.postId = $stateParams['id']
+
+    console.log(this.comments)
+    if($stateParams) {
+      this.postId = $stateParams['id'];
+      this.comments = this.feedService.getAllComments(this.postId);    // invoking the get all commments methods
     }
   }
 }

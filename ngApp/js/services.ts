@@ -31,7 +31,11 @@ namespace app.Services {
       return this.CommentResource.save(comment).$promise // passing in back end point
 
       }
+        public getAllComments(id){
 
+          return this.CommentResource.query({id:id});
+
+        }
 
     constructor(private $resource: ng.resource.IResourceService) {
       this.FeedResource = $resource('/api/posts/:id') // use FeedResource to call this api endpoints // you can use one word to peform different operations.

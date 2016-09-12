@@ -8,7 +8,11 @@ let Comment = mongoose.model("Comment", {
   text: String,
   postId: String,
   author:String,
-  dateCreated:Date
+  dateCreated:Date,
+  dateDeleted: {
+    type: Date,
+    default: null
+  }
 })
 
 
@@ -17,7 +21,7 @@ router.post("/comments", function(req, res){
     text:req.body.text,
     postId:req.body.id,
     author:req.body.author,
-    dateCreated:new Date() // date method will generate a new date 
+    dateCreated:new Date() // date method will generate a new date
   })
 
 newComment.save((err, comment) => { // run the .save methond on the instance.
@@ -32,10 +36,9 @@ newComment.save((err, comment) => { // run the .save methond on the instance.
 })
 
 // get all comments
-router.get('/comments', function(req , res) {
-  comments.find({dateDeleted:null}).then(function(comments) { // getting all comments
-   res.json(comments)
-
+router.get('/comments/:id', function(req , res) {
+  Comment.find({postId:req.params["id"]}).then(function(allComments) { // getting all comments
+   res.json(allComments)
  });
 
 });
@@ -43,7 +46,7 @@ router.get('/comments', function(req , res) {
 router.delete('/comments/:id', function (req, res) {
    console.log('hit')
    // use postman to debug for backend
- comments.findByIdAndUpdate(req.params["id"], {$set:{dateDeleted:new Date()}}, (err, res) => {
+ Comment.findByIdAndUpdate(req.params["id"], {$set:{dateDeleted:new Date()}}, (err, res) => {
    if (err) {
         console.log(err);
       } else {
