@@ -10,3 +10,14 @@
    </form>
 
 <!-- pass data controler to service -->
+
+<div ng-repeat="c in vm.comments">
+
+  <div>
+    @{{c.author}}
+  </div>
+  <div>
+    {{c.text}}     <!-- this shows texts on page load -->
+  </div>
+
+</div>

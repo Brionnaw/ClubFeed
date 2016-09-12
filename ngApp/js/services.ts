@@ -8,7 +8,7 @@ namespace app.Services {
 
     }
     public createPost(postData) { // postData:string represent  an string but usaully is an object
-      let post = {
+      let post = { //object
         text: postData.text,
         id: postData.id,
         author:postData.username
@@ -21,8 +21,14 @@ namespace app.Services {
       return this.FeedResource.remove({id: id}).$promise
 
       }
-      public addComment(commentInput){
-        this.CommentResource.save(commentInput).$promise
+      public addComment(commentInput) {
+        let comment = {
+          text:commentInput.text,
+          id:commentInput.id,
+          author:commentInput.username
+        }
+        console.log(commentInput)
+      return this.CommentResource.save(comment).$promise // passing in back end point
 
       }
 

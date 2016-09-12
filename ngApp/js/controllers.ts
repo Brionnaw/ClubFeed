@@ -1,4 +1,6 @@
 // this file is used to pass data to services
+let token = window.localStorage["token"];
+let payload = JSON.parse(window.atob(token.split('.')[1]));
 namespace app.Controllers {
     // HomeController // used for modal comment
     export class HomeController {
@@ -33,12 +35,12 @@ namespace app.Controllers {
                   //splice - take out the array
               });
             } else {
-              // console.log('not deleted')
+              console.log('not deleted')
               }
           }
-          //Edit Comment
-          // public edit(){
-          // }
+          // Edit Comment
+          public edit(){
+          }
         constructor(
 
           private $uibModal: angular.ui.bootstrap.IModalService,
@@ -58,7 +60,6 @@ namespace app.Controllers {
          }
        }
      }
-    angular.module('app').controller('HomeController', HomeController);
 
 
       //Dialog Controller // used for feed service to input comment
@@ -75,7 +76,7 @@ namespace app.Controllers {
           }
           this.feedService.createPost(info).then((res) => { // res is located in post.ts
             this.$uibModalInstance.close(); // closes modal
-            window.location.reload(); // forces the window to refresh
+            window.location.reload(); // forces the window to refresh to load comments
           })
         }
         constructor(
@@ -83,7 +84,6 @@ namespace app.Controllers {
           private feedService: app.Services.FeedService) {
           }
     }
-    angular.module('app').controller('ModalController', ModalController);
 
     // Edit Controller
     export class EditController {
@@ -136,9 +136,6 @@ namespace app.Controllers {
       ) {
           }
       }
-
-  angular.module('app').controller('RegisterController', RegisterController);
-
   //LOGIN CONTROLLER
   export class LoginController{
     public user;
@@ -167,29 +164,52 @@ namespace app.Controllers {
     }
   }
 }
-
+//CommentController
 export class CommentController{
     public commentInput;
     public postId;
+    public comments;
     public addComment(
     ){
       let comment = {
         text:this.commentInput,
-        id:this.postId
+        id:this.postId,
+        username:payload.username
       }
-      this.feedService.addComment(comment);
-  }
 
+    this.feedService.addComment(comment).then((res) => {
+      this.comments.push(res);
+      console.log(this.comments) // push the comments when clicking add comments
+    }); // make comment equal to the result of the services
+
+  }
+  // remove comment
+  public remove(postId:string, index:number) {
+    let answer = confirm('Are you sure you want to delete?')
+    if(answer === true) {
+      this.feedService.deletePost(postId).then(() => {
+        this.commentInput.splice(index, 1);
+
+        });
+      } else {
+        console.log('not deleted')
+        }
+    }
   constructor(
     private feedService: app.Services.FeedService,
     public $stateParams: ng.ui.IStateParamsService
   ){
+    this.comments = [];
     if($stateParams){
       this.postId = $stateParams['id']
     }
   }
 }
-
-  angular.module('app').controller('CommentController', CommentController);
+// Registerd Controllers
+  angular.module('app').controller('HomeController', HomeController);
+  angular.module('app').controller('ModalController', ModalController);
   angular.module('app').controller('LoginController', LoginController);
+  angular.module('app').controller('RegisterController', RegisterController);
+  angular.module('app').controller('CommentController', CommentController);
+
 }
