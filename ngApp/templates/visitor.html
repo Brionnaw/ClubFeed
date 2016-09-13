@@ -1,0 +1,30 @@
+
+<button type="button" ng-click="vm.follow()">Follow</button>
+
+<div class="row live-feed">
+      <div ng-repeat="p in vm.posts track by $index" class="col-xs-12">
+        <!-- this is panels -->
+        <div class="panel panel-default">
+        <div class="panel-body">
+        <div>
+        <a ui-sref="Visitor({username:p.author})"> @{{p.author}}</a> <!-- add a state params to bring object with us.-->
+        </div>
+        <div>
+          {{p.text}}     <!-- this shows texts on page load -->
+        </div>
+        <div>
+          {{p.dateCreated  | date: 'shortDate'}} @   {{p.dateCreated  | date: 'shortTime'}} <!-- this filter shortens time format -->
+        </div>
+
+        <a ui-sref="Comments({id:p._id})">Comments</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--  basic concept: username - click follow and take username and save username in array.
+using .push method to push new username into array of all existing followers. -->
+<!-- look up mongodb saving arrays
+create new instance , assign the followers property an array.
+add the follower to the array using .push -->

@@ -53,6 +53,11 @@ namespace app {
       templateUrl: '/templates/comments.html',
       controller: app.Controllers.CommentController,
       controllerAs: 'vm'
+    }) .state('Visitor', {
+      url: '/visitor/:username',
+      templateUrl: '/templates/visitor.html',
+      controller: app.Controllers.VisitorController,
+      controllerAs: 'vm'
     })
 
     $urlRouterProvider.otherwise('/');

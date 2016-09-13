@@ -11,9 +11,6 @@
     <!-- ADD USER / LOCATION ICONS -->
     <div class="row">
       <div class="col-xs-1">
-        <img src="images/adduser.png"
-        width="50" height="50"
-        alt="adduser" />
       </div>
       <div class="col-xs-1">
       </div>
@@ -61,54 +58,36 @@
   <!--Check-ins-->
     <div class="col-xs-9">
       <div class="row check-in">
-        <div class="col-xs-4">
-          CHECK-INS
+        <div class="col-xs-4 text-center">
+         CHECK-INS
+        <p> <h3> {{vm.posts.length}} </h3></p> <!-- this represent the post count -->
         </div>
-        <div class="col-xs-4">
+        <div class="col-xs-4 text-center">
           FOLLOWING
+
         </div>
-        <div class="col-xs-4">
+        <div class="col-xs-4 text-center">
           FOLLOWERS
         </div>
       </div>
-      <!-- NEWS FEED -->
-      <div class="row nav-feed">
-        <div class="col-xs-3">
-          <a ui sref="#">Live feed</a>
-        </div>
-        <div class="col-xs-3">
-          <a ui sref="#">Replies</a>
-        </div>
-        <div class="col-xs-3">
-          <a ui sref="#">Check-ins</a>
-        </div>
-        <div class="col-xs-3">
-          <a ui sref="#">Nearby</a>
-        </div>
-    </div>
+
     <div class="row live-feed">
-      <div class="col-xs-3">
-      <!--  <img src = "http://4vector.com/i/free-vector-egg-icon_101770_Egg_icon.png"
-        width="75" height="75"
-        alt="user-photo"/> -->
-      </div>
-      <div ng-repeat="p in vm.posts track by $index" class="col-xs-9">
-
-        <div>
-          @{{p.author}}
+          <div ng-repeat="p in vm.posts track by $index" class="col-xs-12">
+            <!-- this is panels -->
+            <div class="panel panel-default">
+            <div class="panel-body">
+            <div>
+            <a ui-sref="Visitor({username:p.author})"> @{{p.author}}</a> <!-- add a state params to bring object with us.-->
+            </div>
+            <div>
+              {{p.text}}     <!-- this shows texts on page load -->
+            </div>
+            <div>
+              {{p.dateCreated  | date: 'shortDate'}} @   {{p.dateCreated  | date: 'shortTime'}} <!-- this filter shortens time format -->
+            </div>
+            <a ui-sref="Comments({id:p._id})">Comments</a>
+          </div>
         </div>
-        <div>
-        {{p.text}}     <!-- this shows texts on page load -->
-      </div>
-      <div>
-        {{p.dateCreated  | date: 'short'}} <!-- this filter shortens time format -->
-      </div>
-
-
-
-        <button ng-click="vm.remove(p._id, $index) ">Delete</button>
-        <button ui-sref="editPosts({info: [p._id, p.text]})">Edit</button>
-        <button ui-sref="Comments({id:p._id})">Comments</button>
       </div>
     </div>
   </div>

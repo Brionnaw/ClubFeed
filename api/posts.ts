@@ -63,11 +63,12 @@
 
   });
 });
-// get all profile prost
+// get all profile prost that arent deleted //
  router.get('/posts/:id', function (req, res){
-   Post.find({author:req.params["id"]}).then(function(allProfilePosts){
-     res.json(allProfilePosts)
-   })
+   Post.find({author:req.params["id"], dateDeleted:null}).then(function(allProfilePosts){
+     console.log(allProfilePosts)
+     res.send(allProfilePosts);
+    })
  })
 // delete post
  router.delete('/posts/:id', function (req, res) {

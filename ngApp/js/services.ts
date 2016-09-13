@@ -48,16 +48,20 @@ namespace app.Services {
   }
     export class UserService {
         public RegisterResource;
-
+        public LoginResource;
+        public FollowResource;
         public register(user){
           return this.RegisterResource.save(user).$promise;
         }
-        public LoginResource;
 
         public login(user){
           return this.LoginResource.save(user).$promise;
 
         }
+        public followProfile(username){
+          return this.FollowResource.save({username:username}).$promise 
+        }
+
       constructor(
 
         $resource:ng.resource.IResourceService
@@ -65,10 +69,12 @@ namespace app.Services {
 
         this.RegisterResource = $resource('api/users/register')
         this.LoginResource = $resource('api/users/login');
+        this.FollowResource = $resource('api/users');
       }
     }
 
   angular.module('app').service('feedService', FeedService),
   angular.module('app').service('userService', UserService);
+
 
     }

@@ -1,10 +1,9 @@
 // this file is used to pass data to services
-let token = window.localStorage["token"];
-let payload = JSON.parse(window.atob(token.split('.')[1]));
+
+
 namespace app.Controllers {
     // HomeController // used for modal comment
     export class HomeController {
-
         public posts;
 
           // Logout button
@@ -25,22 +24,6 @@ namespace app.Controllers {
                 size: 'md'
               });
             }
-
-        // Delete Comment
-        public remove(postId:string, index:number) {
-          let answer = confirm('Are you sure you want to delete?')
-          if(answer === true) {
-            this.feedService.deletePost(postId).then(() => {
-              this.posts.splice(index, 1);
-                  //splice - take out the array
-              });
-            } else {
-              console.log('not deleted')
-              }
-          }
-          // Edit Comment
-          public edit(){
-          }
         constructor(
 
           private $uibModal: angular.ui.bootstrap.IModalService,
@@ -51,7 +34,6 @@ namespace app.Controllers {
 
         ) {
            this.posts = this.feedService.getAllPosts() // this line get all posts
-
            let token = window.localStorage["token"];
            if(token) {
             console.log('logged in') // redirect user to login if token is expired.
@@ -113,9 +95,8 @@ namespace app.Controllers {
           console.log('Do not exist!')
         }
       }
-  }
+    }
 
-  angular.module('app').controller('EditController', EditController);
 
   // REGISTER controller
   export class RegisterController {
@@ -134,8 +115,9 @@ namespace app.Controllers {
         private userService: app.Services.UserService,
         public $state: ng.ui.IStateService
       ) {
-          }
       }
+    }
+
   //LOGIN CONTROLLER
   export class LoginController {
     public user;
@@ -164,6 +146,7 @@ namespace app.Controllers {
     }
   }
 }
+
 //CommentController
 export class CommentController {
     public commentInput;
@@ -171,6 +154,9 @@ export class CommentController {
     public comments;
     public addComment(
     ){
+      let token = window.localStorage["token"];
+      let payload = JSON.parse(window.atob(token.split('.')[1]));
+
       let comment = {
         text:this.commentInput,
         id:this.postId,
@@ -207,11 +193,23 @@ export class CommentController {
     }
   }
 }
+
  // PROFILE CONTROLLER
- export class ProfileController {
+ export class ProfileController{
    public posts;
 
-
+   // Delete Comment
+   public remove(postId:string, index:number) {
+     let answer = confirm('Are you sure you want to delete?')
+     if(answer === true) {
+       this.feedService.deletePost(postId).then(() => {
+         this.posts.splice(index, 1);
+             //splice - take out the array
+         });
+       } else {
+         console.log('not deleted')
+         }
+     }
    constructor(
 
      private $uibModal: angular.ui.bootstrap.IModalService,
@@ -220,9 +218,12 @@ export class CommentController {
      public $state:ng.ui.IStateService
 
    ) {
-      this.posts = this.feedService.getAllProfilePosts(payload.username) // this line get all posts
+     let token = window.localStorage["token"];
+     let payload = JSON.parse(window.atob(token.split('.')[1]));
 
-      let token = window.localStorage["token"];
+      this.posts = this.feedService.getAllProfilePosts(payload.username) // this line get all posts
+      console.log(this.posts)
+
       if(token) {
        console.log('logged in') // redirect user to login if token is expired.
       } else {
@@ -231,13 +232,37 @@ export class CommentController {
   }
 }
 
+  //VISITOR CONTROLLER
+ export class VisitorController {
+   public username;
+   public posts;
+   public follow(){
+     this.userService.followProfile(this.username).then (() => {
+       alert('user followed');
+     })
+   }
+   constructor(
+     private userService: app.Services.UserService,
+     private feedService: app.Services.FeedService,
+     public $stateParams: ng.ui.IStateParamsService,
+   ) {
+     if($stateParams){
+       this.username = $stateParams["username"]
+       this.posts =  this.feedService.getAllProfilePosts(this.username); // invokes the method
+       console.log(this.posts)
+     }
+
+   }
+ }
+
+
 // Registerd Controllers
   angular.module('app').controller('HomeController', HomeController);
+  angular.module('app').controller('EditController', EditController);
   angular.module('app').controller('ModalController', ModalController);
   angular.module('app').controller('LoginController', LoginController);
   angular.module('app').controller('RegisterController', RegisterController);
   angular.module('app').controller('CommentController', CommentController);
   angular.module('app').controller('ProfileController', ProfileController);
-
-
+  angular.module('app').controller('VisitorController', VisitorController);
 }

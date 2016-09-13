@@ -10,10 +10,14 @@
 let User = mongoose.model("User",{
     email: String,
     username:{
-   type:String,
-   unique:true},
-  password: String,
-  salt:String,
+    type:String,
+    unique:true},
+    password: String,
+    salt:String,
+    followers:{
+      type:Array,
+      default:[]
+    }
 })
 
 // POST - register user
@@ -38,7 +42,7 @@ router.post('/users/register', function(req, res) {
          res.send(err);
        }else {
          console.log(res);
-         res.send(user);
+         res.end(); // end response
       }
       })
     } else {
@@ -67,6 +71,12 @@ newUser.save((err, user) => {
   })
 })
 });
+
+// POST - Followers
+router.post('/users', function(req, res){
+  console.log(req.body)
+  res.send('success')
+})
 
 //POST - login user
  router.post('/users/login', function(req, res) {
