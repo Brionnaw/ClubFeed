@@ -5,7 +5,7 @@ namespace app.Controllers {
     // HomeController // used for modal comment
     export class HomeController {
         public posts;
-
+        public totalFollowers;
           // Logout button
           public logout(){
             window.localStorage.removeItem('token');
@@ -27,14 +27,18 @@ namespace app.Controllers {
         constructor(
 
           private $uibModal: angular.ui.bootstrap.IModalService,
+          private userService: app.Services.UserService,
           private feedService: app.Services.FeedService,
           public $stateParams: ng.ui.IStateParamsService,
           public $state:ng.ui.IStateService
 
 
         ) {
+          let token = window.localStorage["token"];
+          let payload = JSON.parse(window.atob(token.split('.')[1]));
+          let total = this.userService.getAllFollowers(payload.username);
+          this.totalFollowers = total.length;
            this.posts = this.feedService.getAllPosts() // this line get all posts
-           let token = window.localStorage["token"];
            if(token) {
             console.log('logged in') // redirect user to login if token is expired.
            } else {

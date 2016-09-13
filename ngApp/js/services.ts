@@ -61,6 +61,10 @@ namespace app.Services {
         public followProfile(info){
           return this.FollowResource.save(info).$promise
         }
+        public getAllFollowers(username){
+          return this.FollowResource.query({id: username})
+
+        }
       constructor(
 
         $resource:ng.resource.IResourceService
@@ -68,7 +72,7 @@ namespace app.Services {
 
         this.RegisterResource = $resource('api/users/register')
         this.LoginResource = $resource('api/users/login');
-        this.FollowResource = $resource('api/users');
+        this.FollowResource = $resource('api/users/:id');
       }
     }
 

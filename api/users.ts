@@ -87,6 +87,13 @@ router.post('/users', function(req, res){
   })
 });
 
+router.get('/users/:id', function (req, res){
+  User.find({username:req.params["id"]}, function (req, user){
+    console.log(user);
+    res.send(user);
+  })
+
+})
 
 //POST - login user
  router.post('/users/login', function(req, res) {
