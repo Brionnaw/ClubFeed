@@ -236,25 +236,34 @@ export class CommentController {
  export class VisitorController {
    public username;
    public posts;
+   public payload;
    public follow(){
-     this.userService.followProfile(this.username).then (() => {
+     let userInfo = {
+       follower:this.payload.username,
+       profile:this.username
+     }
+     this.userService.followProfile(userInfo).then (() => {
        alert('user followed');
+
      })
    }
+
    constructor(
      private userService: app.Services.UserService,
      private feedService: app.Services.FeedService,
      public $stateParams: ng.ui.IStateParamsService,
    ) {
+     let token = window.localStorage["token"];
+     this.payload = JSON.parse(window.atob(token.split('.')[1])); // change to local to scope variable to access anywhere inside class
+
      if($stateParams){
-       this.username = $stateParams["username"]
+
+       this.username = $stateParams["username"] // assign value to username
        this.posts =  this.feedService.getAllProfilePosts(this.username); // invokes the method
        console.log(this.posts)
      }
-
    }
  }
-
 
 // Registerd Controllers
   angular.module('app').controller('HomeController', HomeController);

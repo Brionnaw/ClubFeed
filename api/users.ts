@@ -25,8 +25,6 @@ router.post('/users/register', function(req, res) {
   User.find({username: req.body.username}, function(err, user) {
     // this is for checking if username exist
     if(user.length < 1) {
-
-
       let salt = crypto.randomBytes(16).toString('hex');
       let hash = crypto.pbkdf2Sync(req.body.password, salt, 1000, 64).toString('hex');
       let newUser = new User({
@@ -74,9 +72,21 @@ newUser.save((err, user) => {
 
 // POST - Followers
 router.post('/users', function(req, res){
-  console.log(req.body)
-  res.send('success')
-})
+  User.find({username:req.body.profile}, function(err, user){
+    let followers = user[0].followers
+    followers.push(req.body.follower)
+    User.findByIdAndUpdate(user[0]._id, {$push:{"followers":req.body.follower}}, {safe: true, upsert: true}, (err, profile) => {
+        if (err) {
+           console.log(err);
+            res.end()
+         } else {
+           console.log(profile);
+            res.end()
+         }
+       });
+  })
+});
+
 
 //POST - login user
  router.post('/users/login', function(req, res) {

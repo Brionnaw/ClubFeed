@@ -58,10 +58,9 @@ namespace app.Services {
           return this.LoginResource.save(user).$promise;
 
         }
-        public followProfile(username){
-          return this.FollowResource.save({username:username}).$promise 
+        public followProfile(info){
+          return this.FollowResource.save(info).$promise
         }
-
       constructor(
 
         $resource:ng.resource.IResourceService
