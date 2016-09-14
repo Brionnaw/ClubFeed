@@ -1,5 +1,5 @@
-<div>
-  <a ui-sref="edit-profile">edit profile</a>
-</div>
 
-<ui-view></ui-view>
+    <button ng-click="vm.pickFile()">Upload</button>
+
+    <h2>{{vm.file.filename}}</h2>
+    <img ng-src="{{vm.file.url | fpConvert:{w: 400} }}"/>

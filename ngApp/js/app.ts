@@ -1,10 +1,13 @@
 'use strict';
 namespace app {
-  angular.module('app', ['ui.router', 'ngResource', 'ui.bootstrap'])
+  angular.module('app', ['ui.router', 'ngResource', 'ui.bootstrap', 'angular-filepicker'])
     .config((
+
     $stateProvider: ng.ui.IStateProvider,
     $locationProvider: ng.ILocationProvider,
-    $urlRouterProvider: ng.ui.IUrlRouterProvider) => {
+    $urlRouterProvider: ng.ui.IUrlRouterProvider,
+    filepickerProvider) => {
+    filepickerProvider.setKey('APC947uh2T46mDGrkcws5z')
 
     $stateProvider.state('Home', {
       url: '/Home',
@@ -12,14 +15,14 @@ namespace app {
       controller: app.Controllers.HomeController,
       controllerAs: 'vm'
     })
-    .state('Landing-page', {
-      url: '/landing-page',
+    .state('LandingPage', {
+      url: '/',
       templateUrl: '/templates/landing-page.html',
-      controller: app.Controllers.HomeController,
+      controller: app.Controllers.LandingPageController,
       controllerAs: 'vm'
     })
     .state('Login', {
-      url: '/',
+      url: '/login',
       templateUrl: '/templates/login.html',
       controller: app.Controllers.LoginController,
       controllerAs: 'vm'
@@ -30,7 +33,6 @@ namespace app {
       controller: app.Controllers.RegisterController,
       controllerAs: 'vm'
     })
-
     .state('Profile', {
       url: '/profile',
       templateUrl: '/templates/profile.html',

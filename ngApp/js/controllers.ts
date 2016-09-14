@@ -4,9 +4,11 @@
 namespace app.Controllers {
     // HomeController // used for modal comment
     export class HomeController {
+        public file;
         public posts;
         public totalFollowers;
         public totalFollowing;
+        public bioInfo;
           // Logout button
           public logout(){
             window.localStorage.removeItem('token');
@@ -25,11 +27,34 @@ namespace app.Controllers {
                 size: 'md'
               });
             }
+
+      public pickFile() {
+           this.filepickerService.pick(
+               { mimetype: 'image/*' },
+               this.fileUploaded.bind(this)
+           );
+       }
+       public fileUploaded(file) {
+            // save file url to database
+            this.file = file;
+            this.$scope.$apply(); // force page to update
+
+            let fileInfo = {
+              id:this.bioInfo[0]._id,
+              url:this.file.url
+            }
+            console.log(fileInfo)
+            this.userService.updateUserImage(fileInfo).then((res) => {
+        })
+      }
+
         constructor(
 
           private $uibModal: angular.ui.bootstrap.IModalService,
           private userService: app.Services.UserService,
           private feedService: app.Services.FeedService,
+          private filepickerService,
+          private $scope: ng.IScope,
           public $stateParams: ng.ui.IStateParamsService,
           public $state:ng.ui.IStateService
 
@@ -38,10 +63,9 @@ namespace app.Controllers {
           let token = window.localStorage["token"];
           let payload = JSON.parse(window.atob(token.split('.')[1]));
           let userInfo = this.userService.getUserInfo(payload.username);
-          this.totalFollowers = userInfo;
-          console.log(this.totalFollowers);
-          this.totalFollowing = userInfo
-            console.log(this.totalFollowing);
+
+          this.bioInfo = userInfo;
+          console.log(this.bioInfo);
           this.posts = this.feedService.getAllPosts() // this line get all posts
           if(token) {
             console.log('logged in') // redirect user to login if token is expired.
@@ -271,7 +295,19 @@ export class CommentController {
      }
    }
  }
+ // LANDING PAGE CONTROLLER
+ export class LandingPageController {
+    public loggedIn;
 
+    constructor() {
+      let token = window.localStorage["token"];
+      if(token){ // does this variable 'token' exist? "truthy statement"
+        this.loggedIn = true
+      } else {
+        this.loggedIn = false;
+      }
+    }
+}
 // Registerd Controllers
   angular.module('app').controller('HomeController', HomeController);
   angular.module('app').controller('EditController', EditController);
@@ -281,4 +317,6 @@ export class CommentController {
   angular.module('app').controller('CommentController', CommentController);
   angular.module('app').controller('ProfileController', ProfileController);
   angular.module('app').controller('VisitorController', VisitorController);
+  angular.module('app').controller('LandingPageController', LandingPageController)
+
 }

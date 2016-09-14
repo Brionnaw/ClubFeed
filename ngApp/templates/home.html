@@ -5,7 +5,7 @@
     <title>Home</title>
   </head>
   <body>
-    <center><h1>Welcome back!</h1></center>
+    <center><h1>Welcome {{vm.bioInfo[0].username}}!</h1></center>
     <button ng-click="vm.logout()">Logout</button>
     <a ui-sref="Landing-page">www.Clubfeed.com</a>
     <!-- ADD USER / LOCATION ICONS -->
@@ -43,37 +43,42 @@
 <!-- PORTFOLIO PHOTO -->
   <div class="row">
     <div class="col-xs-3 home-bio">
-      <img src = "http://4vector.com/i/free-vector-egg-icon_101770_Egg_icon.png"
-      width="75" height="75"
-      alt="portfolio-photo"/>
-     <a ui-sref="edit-profile">EDIT</a>
-      <p>
-        <input placeholder="Name">
-        <input placeholder="@username">
-        <input placeholder="bio">
-        <input placeholder="location">
-      </p>
+      <span ui-sref="Profile" class="profilePic"><img ng-src="{{vm.bioInfo[0].photoUrl}}"
+      width="150" height="150"
+      alt="portfolio-photo"/></span>
+     <table class="table">
+       <tr>
+         <td>
+           <p>
+         @{{vm.bioInfo[0].username}}
+           </p>
+         </td>
+       </tr>
+     </table>
     </div>
+
+
+
 
   <!--Check-ins-->
     <div class="col-xs-9">
       <div class="row check-in">
         <div class="col-xs-4 text-center">
          CHECK-INS
-        <p> <h3> {{vm.posts.length}} </h3></p> <!-- this represent the post count -->
+        <p> <h3> {{vm.posts.length}}  </h3></p> <!-- this represent the post count -->
         </div>
         <div class="col-xs-4 text-center">
           FOLLOWING
           <p>
             <h3>
-              {{vm.totalFollowing[0].following.length}}
+              {{vm.bioInfo[0].following.length}}
             </h3>
           </p>
         </div>
         <div class="col-xs-4 text-center">
           FOLLOWERS
         <p>
-        <h3>  {{vm.totalFollowers[0].followers.length}} </h3>
+        <h3>  {{vm.bioInfo[0].followers.length}} </h3>
         </p>
         </div>
       </div>

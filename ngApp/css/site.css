@@ -49,3 +49,7 @@ footer {
 .landing-background {
   background-image: 'http://2.bp.blogspot.com/-D8lQd7hfU9g/UZRr0WZtx-I/AAAAAAAACN4/B0ESFC_Jkiw/s1600/gps-location.png'
 }
+
+.profilePic:hover{
+  cursor:pointer;
+}

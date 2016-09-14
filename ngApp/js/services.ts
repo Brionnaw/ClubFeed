@@ -44,12 +44,14 @@ namespace app.Services {
       this.FeedResource = $resource('/api/posts/:id') // use FeedResource to call this api endpoints // you can use one word to peform different operations.
       this.CommentResource = $resource('/api/comments/:id')
     }
+    // USER SERVICE
   }
     export class UserService {
         public RegisterResource;
         public LoginResource;
         public FollowResource;
         public FollowingResource;
+        public PhotoResource;
 
         public register(user){
           return this.RegisterResource.save(user).$promise;
@@ -66,8 +68,9 @@ namespace app.Services {
         public getUserInfo(username){
           return this.FollowResource.query({id: username})
         }
-
-
+        public updateUserImage(url){
+          return this.PhotoResource.save(url).$promise
+        }
 
 
       constructor(
@@ -76,12 +79,13 @@ namespace app.Services {
         this.RegisterResource = $resource('api/users/register')
         this.LoginResource = $resource('api/users/login');
         this.FollowResource = $resource('api/users/:id');
-        this.FollowingResource =$resource('api/users')
+        this.FollowingResource = $resource('api/users');
+        this.PhotoResource = $resource('api/users/photo')
+
       }
     }
 
-  angular.module('app').service('feedService', FeedService),
-  angular.module('app').service('userService', UserService);
 
-
-    }
+  angular.module('app').service('feedService', FeedService)
+  angular.module('app').service('userService', UserService)
+}

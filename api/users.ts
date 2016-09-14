@@ -14,6 +14,9 @@ let User = mongoose.model("User",{
     unique:true},
     password: String,
     salt:String,
+    photoUrl:{
+      type:String,
+      default:'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png'},
     followers:{
       type:Array,
       default:[]
@@ -107,35 +110,48 @@ router.get('/users/following', function (req, res){
   User.find({username:req.params['following']}, function (req, user){
     res.send(user);
   })
+
 });
 
 //POST - login user
- router.post('/users/login', function(req, res) {
-   User.find({username: req.body.username}, function(err, user) {
-  if(user.length < 1) {
-  res.send({message:'incorrect username'});
-  }else{
-  let hash =  crypto.pbkdf2Sync(req.body.password, user[0].salt, 1000, 64).toString('hex');
-  let today = new Date();
-  let exp = new Date(today);
-  exp.setDate(today.getDate()+ 36500);
-//TOKEN
-  let token = jwt.sign({
-    id:user[0]. id,
-    username: user[0].username,
-    exp: exp.getTime()/ 1000},
-    'SecretKey'
-  );
+  router.post('/users/login', function(req, res) {
+    User.find({username: req.body.username}, function(err, user) {
+      if(user.length < 1) {
+        res.send({message:'incorrect username'});
+      } else {
+        let hash =  crypto.pbkdf2Sync(req.body.password, user[0].salt, 1000, 64).toString('hex');
+        let today = new Date();
+        let exp = new Date(today);
+        exp.setDate(today.getDate()+ 36500);
+        //TOKEN
+        let token = jwt.sign({
+          id:user[0]. id,
+          username: user[0].username,
+          exp: exp.getTime()/ 1000},
+          'SecretKey'
+        );
 
-  if(hash === user[0].password) {
-    res.send({message:"Correct", jwt: token});
-  } else {
-  res.send({message:"Incorrect password"});
-  }
-  }
-  })
-  });
+        if(hash === user[0].password) {
+          res.send({message:"Correct", jwt: token});
+        } else {
+          res.send({message:"Incorrect password"});
+        }
+      }
+    })
+});
+//POST - USER PHOTO UPLOAD/URL
+router.post('/users/photo', function(req, res) {
+  User.findByIdAndUpdate(req.body.id, {$set:{photoUrl: req.body.url}}, (err, user) => {
+      if (err) {
+         console.log(err);
+         res.end()
+       } else {
+         console.log(user);
+         res.end()
+       }
+     });
 
+})
 
 // export router
   export = router;
