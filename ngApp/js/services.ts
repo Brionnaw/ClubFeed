@@ -37,8 +37,7 @@ namespace app.Services {
 
         }
         public getAllProfilePosts(username){
-          return this.FeedResource.query({id:username})
-
+          return this.FeedResource.query({id:username});
         }
 
     constructor(private $resource: ng.resource.IResourceService) {
@@ -50,29 +49,34 @@ namespace app.Services {
         public RegisterResource;
         public LoginResource;
         public FollowResource;
+        public FollowingResource;
+
         public register(user){
           return this.RegisterResource.save(user).$promise;
         }
 
         public login(user){
           return this.LoginResource.save(user).$promise;
-
         }
+
         public followProfile(info){
           return this.FollowResource.save(info).$promise
         }
-        public getAllFollowers(username){
+
+        public getUserInfo(username){
           return this.FollowResource.query({id: username})
-
         }
-      constructor(
 
+
+
+
+      constructor(
         $resource:ng.resource.IResourceService
       ){
-
         this.RegisterResource = $resource('api/users/register')
         this.LoginResource = $resource('api/users/login');
         this.FollowResource = $resource('api/users/:id');
+        this.FollowingResource =$resource('api/users')
       }
     }
 

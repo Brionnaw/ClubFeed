@@ -6,6 +6,7 @@ namespace app.Controllers {
     export class HomeController {
         public posts;
         public totalFollowers;
+        public totalFollowing;
           // Logout button
           public logout(){
             window.localStorage.removeItem('token');
@@ -36,13 +37,16 @@ namespace app.Controllers {
         ) {
           let token = window.localStorage["token"];
           let payload = JSON.parse(window.atob(token.split('.')[1]));
-          let total = this.userService.getAllFollowers(payload.username);
-          this.totalFollowers = total.length;
-           this.posts = this.feedService.getAllPosts() // this line get all posts
-           if(token) {
+          let userInfo = this.userService.getUserInfo(payload.username);
+          this.totalFollowers = userInfo;
+          console.log(this.totalFollowers);
+          this.totalFollowing = userInfo
+            console.log(this.totalFollowing);
+          this.posts = this.feedService.getAllPosts() // this line get all posts
+          if(token) {
             console.log('logged in') // redirect user to login if token is expired.
-           } else {
-             this.$state.go('Login')
+          } else {
+            this.$state.go('Login')
          }
        }
      }
@@ -246,8 +250,8 @@ export class CommentController {
        follower:this.payload.username,
        profile:this.username
      }
-     this.userService.followProfile(userInfo).then (() => {
-       alert('user followed');
+
+     this.userService.followProfile(userInfo).then(() => {
 
      })
    }
@@ -264,7 +268,6 @@ export class CommentController {
 
        this.username = $stateParams["username"] // assign value to username
        this.posts =  this.feedService.getAllProfilePosts(this.username); // invokes the method
-       console.log(this.posts)
      }
    }
  }

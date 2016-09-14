@@ -66,7 +66,6 @@
 // get all profile prost that arent deleted //
  router.get('/posts/:id', function (req, res){
    Post.find({author:req.params["id"], dateDeleted:null}).then(function(allProfilePosts){
-     console.log(allProfilePosts)
      res.send(allProfilePosts);
     })
  })

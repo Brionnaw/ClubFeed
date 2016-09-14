@@ -17,7 +17,12 @@ let User = mongoose.model("User",{
     followers:{
       type:Array,
       default:[]
+    },
+    following:{
+      type:Array,
+      default:[]
     }
+
 })
 
 // POST - register user
@@ -70,30 +75,39 @@ newUser.save((err, user) => {
 })
 });
 
-// POST - Followers
-router.post('/users', function(req, res){
+// POST - Followers // this saves and add the follower to the profileUser
+router.post('/users', function(req, res, next){ // add middleware
+  console.log(req.body)
   User.find({username:req.body.profile}, function(err, user){
-    let followers = user[0].followers
-    followers.push(req.body.follower)
     User.findByIdAndUpdate(user[0]._id, {$push:{"followers":req.body.follower}}, {safe: true, upsert: true}, (err, profile) => {
-        if (err) {
-           console.log(err);
-            res.end()
-         } else {
-           console.log(profile);
-            res.end()
-         }
-       });
+      next('route')
+    }
+  );
   })
 });
-
-router.get('/users/:id', function (req, res){
-  User.find({username:req.params["id"]}, function (req, user){
-    console.log(user);
-    res.send(user);
+//POST - Following // this add the profile user to following array of the follower.
+router.post('/users', function(req, res){
+  User.find({username:req.body.follower}, function(err, follower){
+    User.findByIdAndUpdate(follower[0]._id, {$push:{"following":req.body.profile}}, {safe: true, upsert: true}, (err, follower) => {
+      res.end();
+    }
+  );
   })
 
 })
+
+
+router.get('/users/:id', function(req, res){
+  User.find({username:req.params["id"]}, function (req, user){
+    res.send(user);
+  })
+});
+
+router.get('/users/following', function (req, res){
+  User.find({username:req.params['following']}, function (req, user){
+    res.send(user);
+  })
+});
 
 //POST - login user
  router.post('/users/login', function(req, res) {
