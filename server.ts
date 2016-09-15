@@ -1,5 +1,4 @@
 // this file is to pass data to route file
-require('dotenv').config({ silent: true });
 import express = require('express');
 import favicon = require('serve-favicon');
 import logger = require('morgan');
