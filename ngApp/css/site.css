@@ -1,5 +1,5 @@
 body {
-  background: #C9DADD  ;
+  background: transparent ;
   font-family: sans-serif;
 }
 .check-in {
@@ -52,4 +52,22 @@ footer {
 
 .profilePic:hover{
   cursor:pointer;
+}
+.topSection {
+  background-color:transparent;
+  background-image: url('/images/clubScene.jpg');
+  height: 300px;
+}
+.middleSection {
+  background-color: white;
+  height: 300px;
+  }
+.section {
+  background-color: #2ADB9D;
+  height: 300px;
+}
+.header {
+  font-size: 80px;
+  font-family:inherit;
+
 }
