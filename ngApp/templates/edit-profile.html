@@ -1,5 +1,20 @@
 
-    <button ng-click="vm.pickFile()">Upload</button>
 
-    <h2>{{vm.file.filename}}</h2>
-    <img ng-src="{{vm.file.url | fpConvert:{w: 400} }}"/>
+<div class="row ">
+  <div class="col-sm-12 uploadPhoto">
+      <div class="col-sm-3">
+      </div>
+    <div class="col-sm-3">
+      <p>
+      <h3>  Upload new photo:</h3>
+      </p>
+      <button class="btn btn-default" ng-click="vm.pickFile()">Upload</button>
+      <h2>{{vm.file.filename}}</h2>
+      <img ng-src="{{vm.file.url | fpConvert:{w: 400} }}"/>
+    </div>
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-3">
+    </div>
+  </div>
+</div>

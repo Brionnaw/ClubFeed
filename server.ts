@@ -8,7 +8,9 @@ import bodyParser = require('body-parser');
 const app = express();
 let mongoose = require ('mongoose');
 //database connection
-  mongoose.connect('mongodb://localhost/club-feed/users');
+  let mongoString ='mongodb://codercamps:Brionna6@ds033086.mlab.com:33086/clubfeed';
+  mongoose.connect(mongoString);
+
   let db = mongoose.connection;  //  making variable connect to the connection
   db.on('error', console.error.bind(console, 'connection error'));
   db.once('open', () => {

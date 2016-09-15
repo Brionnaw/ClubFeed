@@ -1,10 +1,10 @@
 <form ng-submit="vm.save()">
      <div>
-       <label>Status:</label>
-          <textarea ng-model="vm.text" rows="8" cols="40"></textarea>
+       <label>Edit your post:</label>
+          <br><textarea ng-model="vm.text" rows="8" cols="40"></textarea>
      </div>
      <div>
-       <button ng-click="vm.update()"> Edit Comments</button>
+       <button class="btn btn-primary btn-sm" ng-click="vm.update()">Edit post</button>
      </div>
    </form>
 

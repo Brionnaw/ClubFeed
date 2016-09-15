@@ -1,18 +1,22 @@
-<form ng-submit="vm.save()">
-     <div>
-       <label>View all comments:</label>
-     </div>
+<div class="row">
+  <div class="col-xs-12">
+  <h5>Respond to comment:</h5>
 
-           <div><textarea ng-model="vm.commentInput" rows="5" cols="30"></textarea>
-        <button ng-click="vm.addComment()"> add comment</button>
-         </div>
+  <form ng-submit="vm.save()">
+     <div><textarea ng-model="vm.commentInput" rows="5" cols="30"></textarea>
+      <br>
+      <button class="btn btn-primary"
+      ng-click="vm.addComment()">
+      Submit
+    </button>
+  </div>
+  </form>
 
-   </form>
-
-<!-- pass data controler to service -->
-
-<div ng-repeat="c in vm.comments">
-
+<!-- Comments Responses -->
+  <br><br>
+  <div class ="col-sm-4">
+  <label>View all comments:</label>
+  <div ng-repeat="c in vm.comments">
   <div>
     @{{c.author}}
   </div>
@@ -21,5 +25,12 @@
   </div>
   <div>
     {{c.dateCreated | date:"short"}}
+  </div>
+  </div>
+  </div>
+  <div class="col-sm-4">
+  </div>
+  <div class="col-sm-4">
+  </div>
   </div>
 </div>
