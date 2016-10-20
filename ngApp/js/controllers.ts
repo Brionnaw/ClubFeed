@@ -196,7 +196,7 @@ export class CommentController {
       }
 
     this.feedService.addComment(comment).then((res) => {
-      this.comments.push(res);
+      this.comments.push(res)
       console.log(this.comments) // push the comments when clicking add comments
     }); // make comment equal to the result of the services
 

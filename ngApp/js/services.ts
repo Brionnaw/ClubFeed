@@ -72,7 +72,6 @@ namespace app.Services {
           return this.PhotoResource.save(url).$promise
         }
 
-
       constructor(
         $resource:ng.resource.IResourceService
       ){
@@ -81,10 +80,8 @@ namespace app.Services {
         this.FollowResource = $resource('api/users/:id');
         this.FollowingResource = $resource('api/users');
         this.PhotoResource = $resource('api/users/photo')
-
       }
     }
-
 
   angular.module('app').service('feedService', FeedService)
   angular.module('app').service('userService', UserService)
