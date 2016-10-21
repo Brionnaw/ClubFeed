@@ -1,20 +1,17 @@
 
-
 <div class="row ">
   <div class="col-sm-12 uploadPhoto">
-      <div class="col-sm-3">
+      <div class="col-sm-4">
       </div>
-    <div class="col-sm-3">
+    <div class="col-sm-4">
       <p>
-      <h3>  Upload new photo:</h3>
+      <h3> Update Profile Picture</h3>
       </p>
-      <button class="btn btn-default" ng-click="vm.pickFile()">Upload</button>
+      <button class="btn btn-success " ng-click="vm.pickFile()">Upload photo</button>
       <h2>{{vm.file.filename}}</h2>
       <img ng-src="{{vm.file.url | fpConvert:{w: 400} }}"/>
     </div>
-    <div class="col-sm-3">
-    </div>
-    <div class="col-sm-3">
+    <div class="col-sm-4">
     </div>
   </div>
 </div>

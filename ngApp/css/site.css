@@ -53,11 +53,10 @@ footer {
 .uploadPhoto{
   background-color: white;
   border: black solid 1px;
-  margin:4%;
   padding: 4%;
 }
 
-.Nav {
+.landingPageNav {
   background: #88d5a1;
   opacity: 0.6;
 

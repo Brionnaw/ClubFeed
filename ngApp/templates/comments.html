@@ -1,3 +1,30 @@
+
+
+    <!-- Comments Responses -->
+    <br><br>
+
+    <div class ="col-sm-4">
+      <label>View all comments:</label>
+      <div ng-repeat="c in vm.comments">
+        <div>
+          @{{c.author}}
+      </div>
+      <div>
+      {{c.text}}     <!-- this shows texts on page load -->
+      </div>
+      <div>
+        <strong>    {{c.dateCreated | date:"short"}}</strong>
+      </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+    </div>
+    <div class="col-sm-4">
+    </div>
+  </div>
+</div>
+
+<!-- comment response-->
 <div class="row">
   <div class="col-xs-12">
     <h5>Respond to comment:</h5>
@@ -11,26 +38,3 @@
       </button>
     </div>
   </form>
-
-    <!-- Comments Responses -->
-    <br><br>
-    <div class ="col-sm-4">
-      <label>View all comments:</label>
-      <div ng-repeat="c in vm.comments">
-        <div>
-          @{{c.author}}
-      </div>
-      <div>
-      {{c.text}}     <!-- this shows texts on page load -->
-      </div>
-      <div>
-        {{c.dateCreated | date:"short"}}
-      </div>
-      </div>
-    </div>
-    <div class="col-sm-4">
-    </div>
-    <div class="col-sm-4">
-    </div>
-  </div>
-</div>
