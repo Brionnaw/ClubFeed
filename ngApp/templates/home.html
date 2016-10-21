@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Home</title>
-  </head>
-  <body>
+
+<!-- NAV SECTION -->
+<nav class="navbar navbar-default navbar-fixed-top Nav">
+  <div>
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a class="navbar-brand" ui-sref="Landing-Page">CLUBFEED </a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <ul class="nav navbar-nav navbar-right">
+        <li><a ui-sref="Profile">Profile</a></li>
+        <li><a ng-click="vm.logout()">Log out</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
     <center><h1>Welcome {{vm.bioInfo[0].username}}!</h1></center>
     <!-- ADD USER / LOCATION ICONS -->
     <div class="row">
@@ -50,11 +60,10 @@
        <tr>
          <td>
            <p>
-         @{{vm.bioInfo[0].username}}
+        <center> @{{vm.bioInfo[0].username}}</center>
        </p>
            <p>
-             <button class="btn btn-default btn-sm"ui-sref="edit-profile">Edit Photo</button>
-             <button class ="btn btn-default btn-sm" ng-click="vm.logout()">Logout</button>
+          <center>   <button class="btn btn-info btn-sm"ui-sref="edit-profile">Edit Photo</button></center>
            </p>
          </td>
        </tr>
@@ -91,12 +100,13 @@
             <a ui-sref="Visitor({username:p.author})"> @{{p.author}}</a> <!-- add a state params to bring object with us.-->
             </div>
             <div>
-              {{p.text}}     <!-- this shows texts on page load -->
+            <strong>  {{p.dateCreated  | date: 'shortDate'}} @   {{p.dateCreated  | date: 'shortTime'}}</strong> <!-- this filter shortens time format -->
             </div>
             <div>
-              {{p.dateCreated  | date: 'shortDate'}} @   {{p.dateCreated  | date: 'shortTime'}} <!-- this filter shortens time format -->
+              {{p.text}}     <!-- this shows texts on page load -->
             </div>
-            <button class="btn btn-primary"
+
+            <button class="btn btn-primary btn-sm"
             ui-sref="Comments({id:p._id})">View Post</a>
             </button>
           </div>
@@ -105,11 +115,5 @@
     </div>
   </div>
   <!-- FOOTER-->
-  <br><br><br><br>
-    <footer>
-      <p>
-        Copyright @ Brionna White, 2016
-      </p>
-    </footer>
-</body>
+
 </html>

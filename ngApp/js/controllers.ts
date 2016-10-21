@@ -45,6 +45,7 @@ namespace app.Controllers {
             }
             console.log(fileInfo)
             this.userService.updateUserImage(fileInfo).then((res) => {
+              this.$state.go('Home')
         })
       }
 
