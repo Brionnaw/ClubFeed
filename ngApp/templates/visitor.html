@@ -1,25 +1,22 @@
-
-<button type="button" ng-click="vm.follow()">Follow</button>
-
 <div class="row live-feed">
-      <div ng-repeat="p in vm.posts track by $index" class="col-xs-12">
-        <!-- this is panels -->
-        <div class="panel panel-default">
+    <!-- FOLLOW BUTTON-->
+    <button type="button" ng-click="vm.follow()">Follow</button>
+    <div ng-repeat="p in vm.posts track by $index" class="col-xs-12">
+      <div class="panel panel-default">
         <div class="panel-body">
-        <div>
-        <a ui-sref="Visitor({username:p.author})"> @{{p.author}}</a> <!-- add a state params to bring object with us.-->
+          <div>
+            <a ui-sref="Visitor({username:p.author})"> @{{p.author}}</a> <!-- add a state params to bring object with us.-->
+          </div>
+          <div>
+            {{p.text}}     <!-- this shows texts on page load -->
+          </div>
+          <div>
+            {{p.dateCreated  | date: 'shortDate'}} @   {{p.dateCreated  | date: 'shortTime'}} <!-- this filter shortens time format -->
+          </div>
+          <a ui-sref="Comments({id:p._id})">Comments</a>
         </div>
-        <div>
-          {{p.text}}     <!-- this shows texts on page load -->
-        </div>
-        <div>
-          {{p.dateCreated  | date: 'shortDate'}} @   {{p.dateCreated  | date: 'shortTime'}} <!-- this filter shortens time format -->
-        </div>
-
-        <a ui-sref="Comments({id:p._id})">Comments</a>
       </div>
     </div>
-  </div>
 </div>
 
 

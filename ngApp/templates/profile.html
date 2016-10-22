@@ -1,29 +1,26 @@
-
-
 <div class="row">
-<div class="col-sm-12">
-<h1 class="text-center">
-  Profile:
-</h1>
-</div>
+  <div class="col-sm-12">
+    <h1 class="text-center">
+      Profile:
+    </h1>
+  </div>
 </div>
 <div class="row live-feed">
-<div class="col-xs-3">
-</div>
-<div class="col-xs-9">
-  <div ng-repeat="p in vm.posts track by $index" class="col-xs-9">
-    <div>
-      {{p.author}}
+  <div class="col-xs-3">
+  </div>
+  <div class="col-xs-9">
+    <div ng-repeat="p in vm.posts track by $index" class="col-xs-9">
+      <div>
+        {{p.author}}
+      </div>
+      <div>
+        {{p.text}}     <!-- this shows texts on page load -->
+      </div>
+      <div>
+        {{p.dateCreated  | date: 'short'}} <!-- this filter shortens time format -->
+      </div>
+      <button class="btn btn-default btn-sm" ng-click="vm.remove(p._id, $index) ">Delete</button>
+      <button class="btn btn-default btn-sm" ui-sref="editPosts({info: [p._id, p.text]})">Edit</button>
     </div>
-    <div>
-    {{p.text}}     <!-- this shows texts on page load -->
   </div>
-  <div>
-    {{p.dateCreated  | date: 'short'}} <!-- this filter shortens time format -->
-  </div>
-    <button class="btn btn-default btn-sm" ng-click="vm.remove(p._id, $index) ">Delete</button>
-    <button class="btn btn-default btn-sm" ui-sref="editPosts({info: [p._id, p.text]})">Edit</button>
-  </div>
-</div>
-</div>
 </div>
