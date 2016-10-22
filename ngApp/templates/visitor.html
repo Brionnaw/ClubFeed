@@ -4,6 +4,10 @@
     <div ng-repeat="p in vm.posts track by $index" class="col-xs-12">
       <div class="panel panel-default">
         <div class="panel-body">
+          <img ng-src="{{vm.bioInfo[0].photoUrl}}"
+          width="75"
+          height="75"
+          alt="portfolio-photo"/>
           <div>
             <a ui-sref="Visitor({username:p.author})"> @{{p.author}}</a> <!-- add a state params to bring object with us.-->
           </div>
@@ -13,12 +17,11 @@
           <div>
             {{p.dateCreated  | date: 'shortDate'}} @   {{p.dateCreated  | date: 'shortTime'}} <!-- this filter shortens time format -->
           </div>
-          <a ui-sref="Comments({id:p._id})">Comments</a>
+          <span class="label label-primary" ui-sref="Comments({id:p._id})"> View comments</span>
         </div>
       </div>
-    </div>
+  </div>
 </div>
-
 
 <!--  basic concept: username - click follow and take username and save username in array.
 using .push method to push new username into array of all existing followers. -->

@@ -4,10 +4,10 @@
 <label>
   View all comments:
 </label>
-<div class="row live-feed">
+<div class="row">
   <div ng-repeat="c in vm.comments" class="col-sm-12">
-    <div class="panel panel-default">
-      <div class="panel-body">
+    <div class="well col-sm-6">
+      <!-- <div class="panel-body"> -->
         <div>
           @{{c.author}}
         </div>
@@ -19,25 +19,23 @@
             {{c.dateCreated | date:"short"}}
           </strong>
         </div>
-      </div>
+      <!-- </div> -->
     </div>
   </div>
-</div>
+
 <!-- COMMENT RESPONSES-->
-<div class="row">
   <div class="col-sm-6">
     <h5>
       Respond to comment:
     </h5>
     <form ng-submit="vm.save()">
       <div>
-        <textarea
+        <input
           ng-model="vm.commentInput"
+          placeholder="Write a comment..."
           rows="5"
           cols="30">
-        </textarea>
-        <br/>
-        <button class="btn btn-primary" ng-click="vm.addComment()"> Submit </button>
+          <button class="btn btn-success btn-small" ng-click="vm.addComment()"> submit </button>
       </div>
     </form>
   </div>

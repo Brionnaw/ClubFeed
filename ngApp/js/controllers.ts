@@ -235,10 +235,11 @@ namespace app.Controllers {
       public username;
       public posts;
       public payload;
+      public bioInfo;
       public follow(){
         let userInfo = {
           follower:this.payload.username,
-          profile:this.username
+          profile:this.username,
         }
         this.userService.followProfile(userInfo).then(() => {
         })
@@ -249,6 +250,9 @@ namespace app.Controllers {
         public $stateParams: ng.ui.IStateParamsService,
       ) {
         let token = window.localStorage["token"];
+        let payload = JSON.parse(window.atob(token.split('.')[1]));
+        let userInfo = this.userService.getUserInfo(payload.username);
+        this.bioInfo = userInfo;
         this.payload = JSON.parse(window.atob(token.split('.')[1])); // change to local to scope variable to access anywhere inside class
         if($stateParams){
           this.username = $stateParams["username"] // assign value to username

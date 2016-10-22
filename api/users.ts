@@ -40,7 +40,8 @@ router.post('/users/register', function(req, res) {
         email: req.body.email,
         username:req.body.username,
         password:hash,
-        salt:salt
+        salt:salt,
+        photoUrl:req.body.photoUrl
       })
     // SAVE USER
     newUser.save((err, user) => {
@@ -62,7 +63,8 @@ router.post('/users/register', function(req, res) {
       email: req.body.email,
       username:req.body.username,
       password:hash,
-      salt:salt
+      salt:salt,
+      photoUrl:req.body.photoUrl
     })
     // SAVE USER
     newUser.save((err, user) => {
