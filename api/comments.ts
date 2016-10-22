@@ -1,7 +1,7 @@
-// route file
- import express = require('express');
- let mongoose = require('mongoose');
- let router = express.Router();
+// COMMENTS ROUTE FILE
+import express = require('express');
+let mongoose = require('mongoose');
+let router = express.Router();
 
 
 let Comment = mongoose.model("Comment", {
@@ -15,7 +15,6 @@ let Comment = mongoose.model("Comment", {
   }
 })
 
-
 router.post("/comments", function(req, res){
   let newComment = new Comment({
     text:req.body.text,
@@ -23,53 +22,33 @@ router.post("/comments", function(req, res){
     author:req.body.author,
     dateCreated:new Date() // date method will generate a new date
   })
-
-newComment.save((err, comment) => { // run the .save methond on the instance.
-  if(err) {
-    console.log(err);
-  } else {
-    console.log(comment);
-    res.send(comment) // comment is coming from the services
-  }
-
+  newComment.save((err, comment) => { // run the .save methond on the instance.
+    if(err) {
+      console.log(err);
+    } else {
+      console.log(comment);
+      res.send(comment) // comment is coming from the services
+    }
+  })
 })
-})
-
-// get all comments
+// GET ALL COMMENTS
 router.get('/comments/:id', function(req , res) {
   Comment.find({postId:req.params["id"]}).then(function(allComments) { // getting all comments
    res.json(allComments)
  });
-
 });
-// delete comments
+// DELETE COMMENTS
 router.delete('/comments/:id', function (req, res) {
-   console.log('hit')
-   // use postman to debug for backend
- Comment.findByIdAndUpdate(req.params["id"], {$set:{dateDeleted:new Date()}}, (err, res) => {
-   if (err) {
-        console.log(err);
-      } else {
-        console.log(res);
-      }
-    });
-
-    res.send('success!')
- });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  console.log('hit') // use postman to debug for backend
+  Comment.findByIdAndUpdate(req.params["id"], {$set:{dateDeleted:new Date()}}, (err, res) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(res);
+    }
+  });
+  res.send('success!')
+});
 
 
 

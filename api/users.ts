@@ -1,34 +1,35 @@
 // import modules
-  import express = require ('express');
-  let router = express.Router();
-  let mongoose = require('mongoose');
-  let passport = require('passport');
-  let crypto = require('crypto');
-  let jwt= require('JSonwebtoken');
+import express = require ('express');
+let router = express.Router();
+let mongoose = require('mongoose');
+let passport = require('passport');
+let crypto = require('crypto');
+let jwt= require('JSonwebtoken');
 
 //MODEL
 let User = mongoose.model("User",{
-    email: String,
-    username:{
-    type:String,
-    unique:true},
-    password: String,
-    salt:String,
-    photoUrl:{
-      type:String,
-      default:'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png'},
-    followers:{
-      type:Array,
-      default:[]
-    },
-    following:{
-      type:Array,
-      default:[]
-    }
-
+  email: String,
+  username: {
+    type: String,
+    unique: true
+  },
+  password: String,
+  salt: String,
+  photoUrl: {
+    type: String,
+    default:'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png'
+  },
+  followers:{
+    type: Array,
+    default: []
+  },
+  following:{
+    type:Array,
+    default:[]
+  }
 })
 
-// POST - register user
+//REGISTER USER
 router.post('/users/register', function(req, res) {
   User.find({username: req.body.username}, function(err, user) {
     // this is for checking if username exist
