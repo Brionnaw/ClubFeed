@@ -42,79 +42,69 @@ router.post('/users/register', function(req, res) {
         password:hash,
         salt:salt
       })
-    // Post - save user
+    // SAVE USER
     newUser.save((err, user) => {
-       if(err) {
+      if(err) {
          console.log;
          res.send(err);
        }else {
          console.log(res);
          res.end(); // end response
-      }
-      })
-    } else {
+       }
+     })
+   } else {
       res.send({message:'username already exist'});
     }
-
-  //  this is for register user
-  let salt = crypto.randomBytes(16).toString('hex');
-  let hash = crypto.pbkdf2Sync(req.body.password, salt, 1000, 64).toString('hex');
-  let newUser = new User({
-    email: req.body.email,
-    username:req.body.username,
-    password:hash,
-    salt:salt
+    //  this is for register user
+    let salt = crypto.randomBytes(16).toString('hex');
+    let hash = crypto.pbkdf2Sync(req.body.password, salt, 1000, 64).toString('hex');
+    let newUser = new User({
+      email: req.body.email,
+      username:req.body.username,
+      password:hash,
+      salt:salt
+    })
+    // SAVE USER
+    newUser.save((err, user) => {
+      if(err) {
+      console.log;
+      res.send(err);
+    } else {
+      console.log(res);
+      res.send(user);
+    }
   })
-// Post - save user
-newUser.save((err, user) => {
-   if(err) {
-     console.log;
-     res.send(err);
-   }else {
-     console.log(res);
-     res.send(user);
-  }
-
-  })
-})
+ })
 });
 
-// POST - Followers // this saves and add the follower to the profileUser
+// FOLLOWERS: saves and add the follower to the profileUser
 router.post('/users', function(req, res, next){ // add middleware
-  console.log(req.body)
   User.find({username:req.body.profile}, function(err, user){
     User.findByIdAndUpdate(user[0]._id, {$push:{"followers":req.body.follower}}, {safe: true, upsert: true}, (err, profile) => {
       next('route')
-    }
-  );
-  })
+    });
+ })
 });
 //POST - Following // this add the profile user to following array of the follower.
 router.post('/users', function(req, res){
   User.find({username:req.body.follower}, function(err, follower){
     User.findByIdAndUpdate(follower[0]._id, {$push:{"following":req.body.profile}}, {safe: true, upsert: true}, (err, follower) => {
       res.end();
-    }
-  );
+    })
   })
-
-})
-
-
+});
 router.get('/users/:id', function(req, res){
   User.find({username:req.params["id"]}, function (req, user){
     res.send(user);
   })
 });
-
 router.get('/users/following', function (req, res){
   User.find({username:req.params['following']}, function (req, user){
     res.send(user);
   })
-
 });
 
-//POST - login user
+  //POST - LOGIN USER
   router.post('/users/login', function(req, res) {
     User.find({username: req.body.username}, function(err, user) {
       if(user.length < 1) {
@@ -131,7 +121,6 @@ router.get('/users/following', function (req, res){
           exp: exp.getTime()/ 1000},
           'SecretKey'
         );
-
         if(hash === user[0].password) {
           res.send({message:"Correct", jwt: token});
         } else {
@@ -143,16 +132,18 @@ router.get('/users/following', function (req, res){
 //POST - USER PHOTO UPLOAD/URL
 router.post('/users/photo', function(req, res) {
   User.findByIdAndUpdate(req.body.id, {$set:{photoUrl: req.body.url}}, (err, user) => {
-      if (err) {
-         console.log(err);
-         res.end()
-       } else {
-         console.log(user);
-         res.end()
-       }
-     });
+    if (err) {
+      console.log(err);
+      res.end();
+    } else {
+      console.log(user);
+      res.end();
+    }
+  })
+});
 
-})
 
-// export router
-  export = router;
+
+
+// EXPORT ROUTER
+export = router;
