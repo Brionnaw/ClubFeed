@@ -1,4 +1,3 @@
-
 <!-- NAV SECTION -->
 <nav class="navbar navbar-default navbar-fixed-top Nav">
   <div>
@@ -12,108 +11,118 @@
         <li><a ui-sref="Profile">Profile</a></li>
         <li><a ng-click="vm.logout()">Log out</a></li>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-    <center><h1>Welcome {{vm.bioInfo[0].username}}!</h1></center>
-    <!-- ADD USER / LOCATION ICONS -->
-    <div class="row">
-      <div class="col-xs-1">
-      </div>
-      <div class="col-xs-1">
-      </div>
-      <div class="col-xs-1">
-      </div>
-      <div class="col-xs-1">
-      </div>
-      <div class="col-xs-1">
-      </div>
-      <div class="col-xs-1">
-      </div>
-      <div class="col-xs-1">
-      </div>
-      <div class="col-xs-1">
-      </div>
-      <div class="col-xs-1">
-      </div>
-      <div class="col-xs-1">
-      </div>
-      <div class="col-xs-1">
-        <button
-        class="btn btn-success"
-        alt="addlocation"
-        ng-click="vm.showModal()">
-          Add Comment
-      </button>
-        <!-- add input box text are, cursor , -->
-      </div>
-      <div class="col-xs-1">
-      </div>
     </div>
-<!-- PORTFOLIO PHOTO -->
-  <div class="row">
-    <div class="col-xs-3 home-bio">
-      <span ui-sref="Profile" class="profilePic"><img ng-src="{{vm.bioInfo[0].photoUrl}}"
-      width="250" height="275"
-      alt="portfolio-photo"/></span>
+  </div>
+</nav>
+
+<center>
+  <h1>Welcome {{vm.bioInfo[0].username}}!</h1>
+</center>
+
+<!-- ADD COMMENT BUTTON -->
+<div class="row">
+  <div class="col-xs-1">
+  </div>
+  <div class="col-xs-1">
+  </div>
+  <div class="col-xs-1">
+  </div>
+  <div class="col-xs-1">
+  </div>
+  <div class="col-xs-1">
+  </div>
+  <div class="col-xs-1">
+  </div>
+  <div class="col-xs-1">
+  </div>
+  <div class="col-xs-1">
+  </div>
+  <div class="col-xs-1">
+  </div>
+  <div class="col-xs-1">
+  </div>
+  <div class="col-xs-1">
+    <button
+     class="btn btn-success"
+     alt="addlocation"
+     ng-click="vm.showModal()">
+     Add Comment
+    </button>
+    <!-- add input box text are, cursor , -->
+  </div>
+  <div class="col-xs-1">
+  </div>
+</div>
+
+<!-- HOME PHOTO -->
+<div class="row">
+  <div class="col-xs-3 home-bio">
+    <span ui-sref="Profile" class="profilePic">
+      <img ng-src="{{vm.bioInfo[0].photoUrl}}"
+      width="250"
+      height="275"
+      alt="portfolio-photo"/>
+    </span>
      <table class="table">
        <tr>
          <td>
            <p>
-        <center> @{{vm.bioInfo[0].username}}</center>
-       </p>
+             <center> @{{vm.bioInfo[0].username}}</center>
+           </p>
            <p>
-          <center>   <button class="btn btn-info btn-sm"ui-sref="edit-profile">Edit Photo</button></center>
+             <center>
+               <button class="btn btn-info btn-sm"ui-sref="edit-profile">Edit Photo</button>
+             </center>
            </p>
          </td>
        </tr>
      </table>
-    </div>
-  <!--Check-ins-->
-    <div class="col-xs-9">
-      <div class="row check-in">
-        <div class="col-xs-4 text-center">
+   </div>
+   <!--Check-ins-->
+   <div class="col-xs-9">
+     <div class="row check-in">
+       <div class="col-xs-4 text-center">
          CHECK-INS
-        <p> <h3> {{vm.posts.length}}  </h3></p> <!-- this represent the post count -->
-        </div>
-        <div class="col-xs-4 text-center">
-          FOLLOWING
-          <p>
-            <h3>
-              {{vm.bioInfo[0].following.length}}
-            </h3>
-          </p>
-        </div>
-        <div class="col-xs-4 text-center">
-          FOLLOWERS
-        <p>
-        <h3>  {{vm.bioInfo[0].followers.length}} </h3>
-        </p>
-        </div>
-      </div>
-    <div class="row live-feed">
-          <div ng-repeat="p in vm.posts track by $index" class="col-xs-12">
-            <!-- this is panels -->
-            <div class="panel panel-default">
-            <div class="panel-body">
-            <div>
-            <a ui-sref="Visitor({username:p.author})"> @{{p.author}}</a> <!-- add a state params to bring object with us.-->
-            </div>
-            <div>
-            <strong>  {{p.dateCreated  | date: 'shortDate'}} @   {{p.dateCreated  | date: 'shortTime'}}</strong> <!-- this filter shortens time format -->
+         <p>
+           <h3> {{vm.posts.length}}  </h3> <!--  represent the post count -->
+         </p>
+       </div>
+       <div class="col-xs-4 text-center">
+         FOLLOWING
+         <p>
+           <h3>
+             {{vm.bioInfo[0].following.length}}
+           </h3>
+         </p>
+       </div>
+       <div class="col-xs-4 text-center">
+         FOLLOWERS
+         <p>
+           <h3>  {{vm.bioInfo[0].followers.length}} </h3>
+         </p>
+       </div>
+     </div>
+     <!-- COMMENTS/FEED-->
+     <div class="row live-feed">
+       <div ng-repeat="p in vm.posts track by $index" class="col-xs-12">
+         <div class="panel panel-default">
+           <div class="panel-body">
+             <div>
+               <a ui-sref="Visitor({username:p.author})"> @{{p.author}}</a> <!-- add a state params to bring object with us.-->
+             </div>
+             <div>
+               <strong>
+                 {{p.dateCreated  | date: 'shortDate'}} @   {{p.dateCreated  | date: 'shortTime'}} <!-- this filter shortens time format -->
+               </strong>
             </div>
             <div>
               {{p.text}}     <!-- this shows texts on page load -->
             </div>
-
-            <button class="btn btn-primary btn-sm"
-            ui-sref="Comments({id:p._id})">View Post</a>
+            <button class="btn btn-primary btn-sm" ui-sref="Comments({id:p._id})">View Post
             </button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- FOOTER-->
-
-</html>
+</div>

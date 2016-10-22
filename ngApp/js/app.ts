@@ -2,7 +2,6 @@
 namespace app {
   angular.module('app', ['ui.router', 'ngResource', 'ui.bootstrap', 'angular-filepicker'])
     .config((
-
     $stateProvider: ng.ui.IStateProvider,
     $locationProvider: ng.ILocationProvider,
     $urlRouterProvider: ng.ui.IUrlRouterProvider,

@@ -1,40 +1,44 @@
-
-
-    <!-- Comments Responses -->
-    <br><br>
-
-    <div class ="col-sm-4">
-      <label>View all comments:</label>
-      <div ng-repeat="c in vm.comments">
+<!-- COMMENTS -->
+<br/>
+<br/>
+<label>
+  View all comments:
+</label>
+<div class="row live-feed">
+  <div ng-repeat="c in vm.comments" class="col-sm-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
         <div>
           @{{c.author}}
+        </div>
+        <div>
+          {{c.text}}     <!-- this shows texts on page load -->
+        </div>
+        <div>
+          <strong>
+            {{c.dateCreated | date:"short"}}
+          </strong>
+        </div>
       </div>
-      <div>
-      {{c.text}}     <!-- this shows texts on page load -->
-      </div>
-      <div>
-        <strong>    {{c.dateCreated | date:"short"}}</strong>
-      </div>
-      </div>
-    </div>
-    <div class="col-sm-4">
-    </div>
-    <div class="col-sm-4">
     </div>
   </div>
 </div>
-
-<!-- comment response-->
+<!-- COMMENT RESPONSES-->
 <div class="row">
-  <div class="col-xs-12">
-    <h5>Respond to comment:</h5>
-
-  <form ng-submit="vm.save()">
-      <div><textarea ng-model="vm.commentInput" rows="5" cols="30"></textarea>
-       <br>
-        <button class="btn btn-primary"
-        ng-click="vm.addComment()">
-        Submit
-      </button>
-    </div>
-  </form>
+  <div class="col-sm-6">
+    <h5>
+      Respond to comment:
+    </h5>
+    <form ng-submit="vm.save()">
+      <div>
+        <textarea
+          ng-model="vm.commentInput"
+          rows="5"
+          cols="30">
+        </textarea>
+        <br/>
+        <button class="btn btn-primary" ng-click="vm.addComment()"> Submit </button>
+      </div>
+    </form>
+  </div>
+</div>

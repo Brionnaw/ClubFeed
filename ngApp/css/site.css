@@ -2,6 +2,29 @@ body {
   background: ghostwhite;
   font-family: sans-serif;
 }
+
+.landingPageBackground {
+  background-image: url('/images/theme.jpg');
+  max-width: 100%;
+  height: 100vh;
+  width: 100vw;
+  opacity: 0.6;
+  background-repeat: no-repeat, repeat;
+  color:black;
+  padding: 30px 20px 40px 50px;
+}
+
+
+
+.landingPageNav {
+  background: #88d5a1;
+  opacity: 0.6;
+
+}
+
+
+/*css finalize*/
+
 .check-in {
   background-color:#fff;
   height: 80px;
@@ -54,21 +77,4 @@ footer {
   background-color: white;
   border: black solid 1px;
   padding: 4%;
-}
-
-.landingPageNav {
-  background: #88d5a1;
-  opacity: 0.6;
-
-}
-
-.landingPageBackground {
-background-image: url('/images/theme.jpg');
- max-width: 100%;
- height: 100vh;
- width: 100vw;
- opacity: 0.6;
- background-repeat: no-repeat, repeat;
- color:black;
- padding: 30px 20px 40px 50px;
 }
