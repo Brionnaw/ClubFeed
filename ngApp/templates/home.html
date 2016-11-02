@@ -6,6 +6,14 @@
         <a class="navbar-brand" ui-sref="Landing-Page">CLUBFEED </a>
       </div>
       <ul class="nav navbar-nav navbar-right">
+        <li
+          style="margin-top:10px"
+          target="_blank"
+          class="no-underline btn btn-success btn-md"
+          ng-click="vm.showModal()">
+          <i class="fa fa-plus-square-o fa-lg" aria-hidden="true" ></i>
+          add post
+        </li>
         <li><a ui-sref="Profile">Profile</a></li>
         <li><a ng-click="vm.logout()">Log out</a></li>
       </ul>
@@ -13,52 +21,18 @@
   </div>
 </nav>
 
-<center>
-  <h1>Welcome {{vm.bioInfo[0].username}}!</h1>
-</center>
-
-<!-- ADD COMMENT BUTTON -->
-<div class="row">
-  <div class="col-xs-1">
-  </div>
-  <div class="col-xs-1">
-  </div>
-  <div class="col-xs-1">
-  </div>
-  <div class="col-xs-1">
-  </div>
-  <div class="col-xs-1">
-  </div>
-  <div class="col-xs-1">
-  </div>
-  <div class="col-xs-1">
-  </div>
-  <div class="col-xs-1">
-  </div>
-  <div class="col-xs-1">
-  </div>
-  <div class="col-xs-1">
-  </div>
-  <div class="col-xs-1">
-    <button
-     class="btn btn-success"
-     alt="addlocation"
-     ng-click="vm.showModal()">
-     Add Comment
-    </button>
-    <!-- add input box text are, cursor , -->
-  </div>
-  <div class="col-xs-1">
-  </div>
-</div>
+<!-- HOME -->>
+    <h1 class="text-center homePage">Welcome {{vm.bioInfo[0].username}}!</h1>
 
 <!-- HOME PHOTO -->
-<div class="row">
-  <div class="col-xs-3 home-bio">
+<div class="row ">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-10  panel panel-default">
+  <div class="col-xs-3 home-bio  panel panel-body">
     <span ui-sref="Profile" class="profilePic">
       <img ng-src="{{vm.bioInfo[0].photoUrl}}"
-      width="250"
-      height="275"
+      width="200"
+      height="250"
       alt="portfolio-photo"/>
     </span>
      <table class="table">
@@ -69,7 +43,7 @@
            </p>
            <p>
              <center>
-               <button class="btn btn-info btn-sm"ui-sref="edit-profile">Edit Photo</button>
+               <button class="btn btn-default btn-sm"ui-sref="edit-profile">Edit Photo</button>
              </center>
            </p>
          </td>
@@ -78,9 +52,9 @@
    </div>
    <!--Check-ins-->
    <div class="col-xs-9">
-     <div class="row check-in">
+     <div class="row check-in panel panel-default">
        <div class="col-xs-4 text-center">
-         CHECK-INS
+         POSTS
          <p>
            <h3> {{vm.posts.length}}  </h3> <!--  represent the post count -->
          </p>
@@ -101,7 +75,7 @@
        </div>
      </div>
      <!-- COMMENTS/FEED-->
-     <div class="row live-feed">
+     <div class="row live-feed panel panel-default">
        <div ng-repeat="p in vm.posts track by $index" class="col-xs-12">
          <div class="panel panel-default">
            <div class="panel-body">
@@ -117,11 +91,14 @@
               {{p.text}}     <!-- this shows texts on page load -->
             </div>
             <!-- VIEW COMMENTS BUTTON -->
-            <button class="btn btn-default btn-sm" ui-sref="Comments({id:p._id})">View Post
+            <button class="no-underline btn btn-primary btn-sm" ui-sref="Comments({id:p._id})">View Post
             </button>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+<div class="col-xs-1">
+
 </div>
