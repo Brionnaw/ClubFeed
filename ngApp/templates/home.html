@@ -1,9 +1,9 @@
 <!-- NAV SECTION -->
-<nav class="navbar navbar-default navbar-fixed-top Nav">
+<nav class="navbar navbar-default navbar-fixed-top nav">
   <div>
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" ui-sref="Landing-Page">CLUBFEED </a>
+        <a class="navbar-brand" ui-sref="Landing-Page" style="color:white">CLUBFEED </a>
       </div>
       <ul class="nav navbar-nav navbar-right">
         <li
@@ -14,8 +14,8 @@
           <i class="fa fa-plus-square-o fa-lg" aria-hidden="true" ></i>
           add post
         </li>
-        <li><a ui-sref="Profile">Profile</a></li>
-        <li><a ng-click="vm.logout()">Log out</a></li>
+        <li><a ui-sref="Profile" style="color:white">Profile</a></li>
+        <li><a ng-click="vm.logout()" style="color:white">Log out</a></li>
       </ul>
     </div>
   </div>
@@ -23,12 +23,11 @@
 
 <!-- HOME -->>
     <h1 class="text-center homePage">Welcome {{vm.bioInfo[0].username}}!</h1>
-
 <!-- HOME PHOTO -->
 <div class="row ">
   <div class="col-xs-1"></div>
   <div class="col-xs-10  panel panel-default">
-  <div class="col-xs-3 home-bio  panel panel-body">
+  <div class="col-xs-3 home-bio  panel panel-body" style="margin:40px 0px 0px 0px">
     <span ui-sref="Profile" class="profilePic">
       <img ng-src="{{vm.bioInfo[0].photoUrl}}"
       width="200"
@@ -52,7 +51,7 @@
    </div>
    <!--Check-ins-->
    <div class="col-xs-9">
-     <div class="row check-in panel panel-default">
+     <div class="row check-in panel panel-default" style="margin:40px 0px 0px 20px">
        <div class="col-xs-4 text-center">
          POSTS
          <p>
@@ -75,9 +74,9 @@
        </div>
      </div>
      <!-- COMMENTS/FEED-->
-     <div class="row live-feed panel panel-default">
+     <div class="row live-feed panel panel-default" style="margin:40px 0px 0px 20px">
        <div ng-repeat="p in vm.posts track by $index" class="col-xs-12">
-         <div class="panel panel-default">
+         <div class="panel panel-default" style="margin:20px 0px 0px 0px">
            <div class="panel-body">
              <div>
                <a ui-sref="Visitor({username:p.author})"> @{{p.author}}</a> <!-- add a state params to bring object with us.-->

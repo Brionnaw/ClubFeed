@@ -21,6 +21,11 @@ body {
   font-size: 16px;
 }
 
+.nav {
+  background: #7e98b3;
+  border-color:#7e98b3;
+}
+
 .homePage{
   padding: 50px 0px 0px 0px;
 }
