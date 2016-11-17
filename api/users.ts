@@ -46,10 +46,10 @@ router.post('/users/register', function(req, res) {
     // SAVE USER
     newUser.save((err, user) => {
       if(err) {
-         console.log;
-         res.send(err);
+         console.log(err);
+         res.end();
        }else {
-         console.log(res);
+         console.log(user);
          res.end(); // end response
        }
      })
@@ -69,8 +69,8 @@ router.post('/users/register', function(req, res) {
     // SAVE USER
     newUser.save((err, user) => {
       if(err) {
-      console.log;
-      res.send(err);
+      console.log(err);
+      res.end();
     } else {
       console.log(res);
       res.send(user);

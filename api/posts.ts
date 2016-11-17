@@ -12,7 +12,7 @@ let Post = mongoose.model('Post', { // "," seperate parameters, {pass in name of
   dateDeleted: {
     type: Date,
     default: null
-  }
+  },
   // latitude: String,
   // longitude: String
   // add usernames
@@ -23,8 +23,8 @@ router.post('/posts', function(req, res) {   //use postman to check error with e
     let newPost = new Post({
       text: req.body.text,
       author:req.body.author,
-      dateCreated:new Date()
-    })
+      dateCreated:new Date(),
+s    })
     newPost.save((err, post) => {
       if(err){
         console.log(err)

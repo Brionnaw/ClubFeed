@@ -20,7 +20,7 @@ router.post("/comments", function(req, res){
     text:req.body.text,
     postId:req.body.id,
     author:req.body.author,
-    dateCreated:new Date() // date method will generate a new date
+    dateCreated:new Date(), // date method will generate a new date
   })
   newComment.save((err, comment) => { // run the .save methond on the instance.
     if(err) {
