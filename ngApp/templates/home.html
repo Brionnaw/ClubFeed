@@ -5,6 +5,10 @@
       <div class="navbar-header">
         <a class="navbar-brand" ui-sref="Landing-Page" style="color:white">CLUBFEED </a>
       </div>
+      <!-- search button-->
+      <!-- need to pass data to back end-->
+       <input type="search" value="search"> <!-- add a ng-model-->
+       <button type="button" class="btn btn-primary btn-sm" ng-click="vm.search()">search</button>
       <ul class="nav navbar-nav navbar-right">
         <li
           style="margin-top:10px"
@@ -21,7 +25,7 @@
   </div>
 </nav>
 
-<!-- HOME -->>
+    <!-- HOME -->>
     <h1 class="text-center homePage">Welcome {{vm.bioInfo[0].username}}!</h1>
 <!-- HOME PHOTO -->
 <div class="row ">

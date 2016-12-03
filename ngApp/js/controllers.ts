@@ -6,6 +6,13 @@ namespace app.Controllers {
       public totalFollowers;
       public totalFollowing;
       public bioInfo;
+      public user;
+      public search(){
+        let info ={
+          user:this.user;
+        }
+        console.log(info)
+      }
       // LOGOUT BUTTON
       public logout(){
         window.localStorage.removeItem('token');

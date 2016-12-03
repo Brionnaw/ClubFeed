@@ -11,10 +11,10 @@ let mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/club-feed');
 
 let db = mongoose.connection;
-      db.on('error', console.error.bind(console, 'connection error'));
-      db.once('open', () => {
-        console.log('success database connection')
-      });
+db.on('error', console.error.bind(console, 'connection error'));
+db.once('open', () => {
+console.log('success database connection')
+  });
 // view engine setup
 app.set('views', './views');
 app.engine('html', require('ejs').renderFile);
