@@ -5,16 +5,16 @@ import logger = require('morgan');
 import cookieParser = require('cookie-parser');
 import bodyParser = require('body-parser');
 const app = express();
-let mongoose = require ('mongoose');
-//database connection
-  let mongoString ='mongodb://codercamps:Brionna6@ds033086.mlab.com:33086/clubfeed';
-  mongoose.connect(mongoString);
+let mongoose = require('mongoose')
 
-  let db = mongoose.connection;  //  making variable connect to the connection
-  db.on('error', console.error.bind(console, 'connection error'));
-  db.once('open', () => {
-  console.log('success database connection')
-  })
+// Datebase connection
+mongoose.connect('mongodb://localhost/club-feed');
+
+let db = mongoose.connection;
+      db.on('error', console.error.bind(console, 'connection error'));
+      db.once('open', () => {
+        console.log('success database connection')
+      });
 // view engine setup
 app.set('views', './views');
 app.engine('html', require('ejs').renderFile);
