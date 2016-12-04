@@ -1,32 +1,31 @@
 <!-- NAV SECTION -->
 <nav class="navbar navbar-default navbar-fixed-top nav">
-  <div>
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" ui-sref="Landing-Page" style="color:white">CLUBFEED </a>
-      </div>
-      <!-- search button-->
-      <!-- need to pass data to back end-->
-       <input type="search" value="search"> <!-- add a ng-model-->
-       <button type="button" class="btn btn-primary btn-sm" ng-click="vm.search()">search</button>
-      <ul class="nav navbar-nav navbar-right">
-        <li
-          style="margin-top:10px"
-          target="_blank"
-          class="no-underline btn btn-success btn-md"
-          ng-click="vm.showModal()">
-          <i class="fa fa-plus-square-o fa-lg" aria-hidden="true" ></i>
-          add post
-        </li>
-        <li><a ui-sref="Profile" style="color:white">Profile</a></li>
-        <li><a ng-click="vm.logout()" style="color:white">Log out</a></li>
-      </ul>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" ui-sref="Landing-Page" style="color:white">CLUBFEED </a>
     </div>
+    <!-- search button-->
+    <!-- need to pass data to back end-->
+    <input type="search" value="search" ng-model="vm.user"> <!-- add a ng-model-->
+    <button type="button" class="btn btn-primary btn-sm" ng-click="vm.search()">search</button>
+    <ul class="nav navbar-nav navbar-right">
+      <li
+        style="margin-top:10px"
+        target="_blank"
+        class="no-underline btn btn-success btn-md"
+        ng-click="vm.showModal()">
+        <i class="fa fa-plus-square-o fa-lg" aria-hidden="true" ></i>
+        add post
+      </li>
+      <li><a ui-sref="Profile" style="color:white">Profile</a></li>
+      <li><a ng-click="vm.logout()" style="color:white">Log out</a></li>
+    </ul>
   </div>
 </nav>
 
-    <!-- HOME -->>
-    <h1 class="text-center homePage">Welcome {{vm.bioInfo[0].username}}!</h1>
+<!-- HOME -->
+<h1 class="text-center homePage">Welcome {{vm.bioInfo[0].username}}!</h1>
+
 <!-- HOME PHOTO -->
 <div class="row ">
   <div class="col-xs-1"></div>
@@ -52,9 +51,9 @@
          </td>
        </tr>
      </table>
-   </div>
-   <!--Check-ins-->
-   <div class="col-xs-9">
+</div>
+<!--Check-ins-->
+<div class="col-xs-9">
      <div class="row check-in panel panel-default" style="margin:40px 0px 0px 20px; padding-bottom:40px">
        <div class="col-xs-4 text-center">
          POSTS

@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var app = express();
 var mongoose = require('mongoose');
-var mongoString = 'mongodb://codercamps:Brionna6@ds033086.mlab.com:33086/clubfeed';
+var mongoString = 'mongodb://localhost/club-feed';
 mongoose.connect(mongoString);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));

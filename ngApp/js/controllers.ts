@@ -7,12 +7,7 @@ namespace app.Controllers {
       public totalFollowing;
       public bioInfo;
       public user;
-      public search(){
-        let info ={
-          user:this.user;
-        }
-        console.log(info)
-      }
+
       // LOGOUT BUTTON
       public logout(){
         window.localStorage.removeItem('token');
@@ -48,6 +43,13 @@ namespace app.Controllers {
         this.userService.updateUserImage(fileInfo).then((res) => {
           this.$state.go('Home')
         })
+      }
+      public search(){
+        let info = {
+          user:this.user
+        }
+         console.log(info)
+
       }
       constructor(
         private $uibModal: angular.ui.bootstrap.IModalService,
