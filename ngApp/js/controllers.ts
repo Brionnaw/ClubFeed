@@ -25,6 +25,9 @@ namespace app.Controllers {
           size: 'md'
         });
       }
+      // public checkin(){
+      //
+      // }
       public pickFile() {
         this.filepickerService.pick(
           { mimetype: 'image/*' },
@@ -76,13 +79,15 @@ namespace app.Controllers {
     // MODAL CONTROLLER // used for feed service to input comment
     export class ModalController { // controller talks to the comment modal.
       public postInput; // bind date to input
+      public location;
       public createPost() {
         let token = window.localStorage["token"];
         let payload = JSON.parse(window.atob(token.split('.')[1]));
         let info = {
           text: this.postInput,
           username:payload.username,
-          id: undefined
+          id: undefined,
+          location: this.location,
         }
         this.feedService.createPost(info).then((res) => { // res is located in post.ts
           this.$uibModalInstance.close(); // closes modal

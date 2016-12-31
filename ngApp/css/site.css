@@ -84,3 +84,8 @@ footer {
   border: black solid 1px;
   padding: 4%;
 }
+
+.addComment {
+  width: 375px;
+  height: 100px;
+}

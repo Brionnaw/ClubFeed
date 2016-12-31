@@ -2,6 +2,7 @@
 import express = require('express');
 let mongoose = require('mongoose');
 let router = express.Router();
+let request = require('request');
 
 // POST MODEL
 let Post = mongoose.model('Post', { // "," seperate parameters, {pass in name of model , object w| properties, values types}
@@ -13,18 +14,23 @@ let Post = mongoose.model('Post', { // "," seperate parameters, {pass in name of
     type: Date,
     default: null
   },
+  location:String
   // latitude: String,
   // longitude: String
   // add usernames
 })
 // POST TO UPDATE OR CREATE POSTS
 router.post('/posts', function(req, res) {   //use postman to check error with endpoints post request (localhost:3000/api/posts)
+  request('https://maps.googleapis.com/maps/api/place/queryautocomplete/json?key=AIzaSyAt9gzbOaBxJPS9v3JvJhnaYI30Ka4zxLk&input=nightclubs',
+  function (error, response, body) {
+    console.log(body)
   if(req.body.id === undefined){
     let newPost = new Post({
       text: req.body.text,
       author:req.body.author,
       dateCreated:new Date(),
-s    })
+      locaton:req.body.locaton
+   })
     newPost.save((err, post) => {
       if(err){
         console.log(err)
@@ -42,6 +48,7 @@ s    })
     });
     res.send('200')
   }
+})
 })
 
 // GET ALL POSTS

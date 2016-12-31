@@ -4,18 +4,18 @@
     <div class="navbar-header">
       <a class="navbar-brand" ui-sref="Landing-Page" style="color:white">CLUBFEED </a>
     </div>
-    <!-- search button-->
+    <!-- search button to find users and places-->
     <!-- need to pass data to back end-->
-    <input type="search" value="search" ng-model="vm.user"> <!-- add a ng-model-->
-    <button type="button" class="btn btn-primary btn-sm" ng-click="vm.search()">search</button>
+      <input type="search" value="search" ng-model="vm.user"> <!-- add a ng-model-->
+      <button type="button" class="btn btn-primary btn-sm" ng-click="vm.search()">search</button>
     <ul class="nav navbar-nav navbar-right">
       <li
         style="margin-top:10px"
         target="_blank"
-        class="no-underline btn btn-success btn-md"
+        class="no-underline btn btn-default btn-sm"
         ng-click="vm.showModal()">
-        <i class="fa fa-plus-square-o fa-lg" aria-hidden="true" ></i>
-        add post
+      <i class="fa fa-plus-square fa-lg" aria-hidden="true" ></i>
+        <!-- Add post -->
       </li>
       <li><a ui-sref="Profile" style="color:white">Profile</a></li>
       <li><a ng-click="vm.logout()" style="color:white">Log out</a></li>
@@ -27,10 +27,9 @@
 <h1 class="text-center homePage">Welcome {{vm.bioInfo[0].username}}!</h1>
 
 <!-- HOME PHOTO -->
-<div class="row ">
-  <div class="col-xs-1"></div>
+<div class="col-xs-1"></div>
   <div class="col-xs-10  panel panel-default" style="padding-bottom:40px">
-  <div class="col-xs-3 home-bio  panel panel-body" style="margin:40px 0px 0px 0px">
+    <div class="col-xs-3 home-bio  panel panel-body" style="margin:40px 0px 0px 0px">
     <span ui-sref="Profile" class="profilePic" style="padding:0px 20px 0px 15px">
       <img ng-src="{{vm.bioInfo[0].photoUrl}}"
       width="200"
@@ -101,6 +100,4 @@
     </div>
   </div>
 </div>
-<div class="col-xs-1">
-
-</div>
+<div class="col-xs-1"></div>

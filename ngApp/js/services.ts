@@ -3,6 +3,7 @@ namespace app.Services {
   export class FeedService {
     public FeedResource;
     public CommentResource;
+    public location;
     public getAllPosts(){
       return this.FeedResource.query();
     }
@@ -10,7 +11,8 @@ namespace app.Services {
       let post = { //object
         text: postData.text,
         id: postData.id,
-        author:postData.username
+        author:postData.username,
+        location:this.location
       }
       console.log(postData)
       return this.FeedResource.save(post).$promise // create an object inside a method.
